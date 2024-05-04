@@ -7,8 +7,7 @@ import {
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import App from "./App.tsx";
-import "./index.css";
+import "./global/default.css";
 import { Header } from "./components/header/header.tsx";
 
 const client = new ApolloClient({
@@ -41,7 +40,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route></Route>
         </Routes>
-        {/* <App /> */}
       </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>
