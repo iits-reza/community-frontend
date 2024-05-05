@@ -9,6 +9,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./global/default.css";
 import { Header } from "./components/header/header.tsx";
+import App from "./components/app.tsx";
 
 const client = new ApolloClient({
   uri: "https://flyby-router-demo.herokuapp.com/",
@@ -17,20 +18,18 @@ const client = new ApolloClient({
 
 // const client = ...
 
-client
-  .query({
-    query: gql`
-      query GetLocations {
-        locations {
-          id
-          name
-          description
-          photo
-        }
+client.query({
+  query: gql`
+    query GetLocations {
+      locations {
+        id
+        name
+        description
+        photo
       }
-    `,
-  })
-  .then((result) => console.log(result));
+    }
+  `,
+});
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -38,7 +37,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route></Route>
+          <Route>
+            <App />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
