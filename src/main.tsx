@@ -13,11 +13,12 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { Header } from "./components/header/header.tsx";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import HttpApi from "i18next-http-backend";
+import Backend from "i18next-http-backend";
 
 import LanguageDetector from "i18next-browser-languagedetector";
+// import App from "./App.tsx";
 i18next
-  .use(HttpApi)
+  .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
@@ -31,7 +32,7 @@ i18next
     },
     // react: { useSuspense: false },
     backend: {
-      loadPath: "/assets/locales/{{lng}}/translation.json",
+      loadPath: "/locales/{{lng}}/translation.json",
     },
   });
 const client = new ApolloClient({

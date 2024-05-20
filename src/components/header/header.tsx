@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faCertificate } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDown,
+  faCertificate,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
@@ -31,7 +35,7 @@ export const Header = () => {
   useEffect(() => {
     console.log("Setting page stuff");
     document.body.dir = currentLanguage?.dir || "ltr";
-    document.title = t("app_title");
+    document.title = t("header.app_title");
   }, [currentLanguage, t]);
 
   return (
@@ -53,11 +57,11 @@ export const Header = () => {
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
           <FontAwesomeIcon icon={faCertificate} />
-          <a>Programs & Events</a>
+          <a>{t("header.programs_events")}</a>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
           <FontAwesomeIcon icon={faCertificate} />
-          <a>Contact</a>
+          <a>{t("header.contact")}</a>
         </li>
       </ul>
       <div className="relative">
@@ -94,7 +98,9 @@ export const Header = () => {
                 }}
                 className="hover:bg-primary w-full hover:text-white cursor-pointer px-10 py-3"
               >
-                {/* <FontAwesomeIcon icon={faCheck} className="mr-4" /> */}
+                {lng.code === currentLanguageCode && (
+                  <FontAwesomeIcon icon={faCheck} className="mx-4" />
+                )}
                 {lng.name}
               </li>
             ))}

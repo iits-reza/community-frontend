@@ -1,15 +1,15 @@
 {
   "header": {
     "home": "خانه",
-    "app_title": "مرکز انجمن",
+    "app_title": "مرکز فرهنگی",
     "about_community": "درباره انجمن",
     "donation": "حمایت مالی",
-    "program_events": "برنامه ها و مناسبت ها",
+    "programs_events": "برنامه ها و مناسبت ها",
     "contact": "راه های ارتباطی",
     "langauge": "زبان"
   },
   "home": {},
   "donations": {},
-  "programms": {},
+  "programs": {},
   "contact": {}
 }
