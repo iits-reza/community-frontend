@@ -1,16 +1,39 @@
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-  faCertificate,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faCertificate } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+
+import { useTranslation } from "react-i18next";
+import cookies from "js-cookie";
+
 import translateIcon from "../../images/language.svg";
 import communityLogo from "../../../public/vite.svg";
-import { useState } from "react";
+import i18next from "i18next";
+
+const languages = [
+  {
+    code: "en",
+    name: "English",
+    dir: "ltr",
+  },
+  {
+    code: "fa",
+    name: "فارسی",
+    dir: "rtl",
+  },
+];
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [primaryLnguage, isPrimaryLangauge] = useState(["English", "Persian"]);
+  const currentLanguageCode = cookies.get("i18next") || "en";
+  const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    console.log("Setting page stuff");
+    document.body.dir = currentLanguage?.dir || "ltr";
+    document.title = t("app_title");
+  }, [currentLanguage, t]);
+
   return (
     <header className="flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
       <Link to="/">
@@ -22,11 +45,11 @@ export const Header = () => {
       <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
           <FontAwesomeIcon icon={faCertificate} />
-          <a>About community</a>
+          <a>{t("header.home")}</a>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
           <FontAwesomeIcon icon={faCertificate} />
-          <a>Donation</a>
+          <a>{t("header.donation")}</a>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
           <FontAwesomeIcon icon={faCertificate} />
@@ -42,7 +65,7 @@ export const Header = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="group flex flex-row items-center gap-x-2"
         >
-          English
+          {}
           <FontAwesomeIcon
             icon={faAngleDown}
             fontSize={15}
@@ -62,20 +85,19 @@ export const Header = () => {
           <ul className="absolute w-[250px] h-auto py-[10px] right-0 flex flex-col items-center justify-center bg-white border-2 border-primary rounded-md">
             <li className="w-full px-10 py-3 border-b-2">Langauage</li>
             <hr />
-            <li
-              className="hover:bg-primary w-full hover:text-white cursor-pointer px-10 py-3"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {/* <FontAwesomeIcon icon={faCheck} className="mr-4" /> */}
-              Persian (فارسی)
-            </li>
-            <li
-              className="hover:bg-primary w-full text-gray-400 hover:text-white cursor-pointer px-10 py-3"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <FontAwesomeIcon icon={faCheck} className="mr-4" />
-              English
-            </li>
+            {languages.map((lng) => (
+              <li
+                key={lng.code}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  i18next.changeLanguage(lng.code);
+                }}
+                className="hover:bg-primary w-full hover:text-white cursor-pointer px-10 py-3"
+              >
+                {/* <FontAwesomeIcon icon={faCheck} className="mr-4" /> */}
+                {lng.name}
+              </li>
+            ))}
           </ul>
         )}
       </div>

@@ -1,0 +1,15 @@
+{
+  "header": {
+    "home": "Home",
+    "app_title": "The Community centre",
+    "about_community": "About community",
+    "donation": "Donation",
+    "program_events": "Programs & Events",
+    "contact": "Contact",
+    "langauge": "Langauge"
+  },
+  "home": {},
+  "donations": {},
+  "programms": {},
+  "contact": {}
+}
