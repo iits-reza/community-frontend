@@ -8,23 +8,33 @@ const variants = cva(
   [
     "relative",
     "disabled:cursor-not-allowed",
-    "bg-transparent border-2 rounded-lg",
-    "font-text font-medium",
+    "bg-lime-200",
+    "font-text",
     "ease-in-out transition-all duration-300",
   ],
   {
     variants: {
       variant: {
-        primary: ["text-white", "bg-lime-200"],
-        secondary: [],
+        primary: [
+          "text-primary",
+          "border-primary",
+          "hover:text-white hover:bg-primary hover:from-primary hover:to-blue hover:from-60%",
+        ],
+        secondary: ["text-white", "border-white", "hover:bg-white/10"],
+        social: [
+          "text-white",
+          "border-primary",
+          "bg-primary",
+          "hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-blue hover:from-60%",
+        ],
       },
       size: {
         default: ["text-lg", "py-2", "px-8"],
       },
-      defaultVariants: {
-        variant: "primary",
-        size: "default",
-      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "default",
     },
   }
 );
