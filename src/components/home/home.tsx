@@ -3,7 +3,7 @@ import { Button } from "../button";
 const Home = () => {
   return (
     <div>
-      <Button>Home Button</Button>
+      <Button variant="secondary">Home Button</Button>
     </div>
   );
 };

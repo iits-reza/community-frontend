@@ -17,16 +17,9 @@ const variants = cva(
       variant: {
         primary: [
           "text-primary",
-          "border-primary",
           "hover:text-white hover:bg-primary hover:from-primary hover:to-blue hover:from-60%",
         ],
-        secondary: ["text-white", "border-white", "hover:bg-white/10"],
-        social: [
-          "text-white",
-          "border-primary",
-          "bg-primary",
-          "hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-blue hover:from-60%",
-        ],
+        secondary: ["bg-lime-50", "text-primary", "hover:bg-lime-200"],
       },
       size: {
         default: ["text-lg", "py-2", "px-8"],
