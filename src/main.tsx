@@ -16,6 +16,7 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 
 import LanguageDetector from "i18next-browser-languagedetector";
+import Home from "./components/home/home.tsx";
 // import App from "./App.tsx";
 i18next
   .use(Backend)
@@ -70,6 +71,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ApolloProvider client={client}>
         <BrowserRouter>
           <Header />
+          <Home />
           <Routes>{/* <Route path="/*" element={<App />} /> */}</Routes>
         </BrowserRouter>
       </ApolloProvider>
