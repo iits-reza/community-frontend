@@ -19,7 +19,8 @@ const variants = cva(
           "text-primary",
           "hover:text-white hover:bg-primary hover:from-primary hover:to-blue hover:from-60%",
         ],
-        secondary: ["bg-lime-50", "text-primary", "hover:bg-lime-200"],
+        secondary: ["bg-lime-50", "text-primary", "hover:bg-lime-400"],
+        social: ["bg-opacity-0", "hover:text-white hover:bg-primary"],
       },
       size: {
         default: ["text-lg", "py-2", "px-8"],
