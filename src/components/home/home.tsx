@@ -3,7 +3,7 @@ import heroImageHome from "../../images/heroHomePage.svg";
 
 const Home = () => {
   return (
-    <div className="p-[80px] flex flex-row gap-[80px] ">
+    <div className="p-[80px] flex flex-row gap-[80px] w-full justify-center">
       <div className="flex flex-col gap-[25px]">
         <h1 className="text-[40px] font-title w-[600px]">
           Join to your community today and participate in community events
