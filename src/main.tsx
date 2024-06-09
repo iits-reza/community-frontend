@@ -18,6 +18,7 @@ import Backend from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Home from "./components/home/home.tsx";
 import About from "./components/about/about.tsx";
+import Programs from "./components/programs/programs.tsx";
 // import App from "./App.tsx";
 i18next
   .use(Backend)
@@ -74,6 +75,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Header />
           <Home />
           <About />
+          <Programs />
           <Routes>{/* <Route path="/*" element={<App />} /> */}</Routes>
         </BrowserRouter>
       </ApolloProvider>
