@@ -53,6 +53,10 @@ export const Header = () => {
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
           <FontAwesomeIcon icon={faCertificate} />
+          <a>{t("header.about_community")}</a>
+        </li>
+        <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
+          <FontAwesomeIcon icon={faCertificate} />
           <a>{t("header.donation")}</a>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
