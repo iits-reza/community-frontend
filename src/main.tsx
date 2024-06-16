@@ -21,6 +21,7 @@ import About from "./components/about/about.tsx";
 import Programs from "./components/programs/programs.tsx";
 import Footer from "./components/footer/footer.tsx";
 import Donations from "./components/donations/donations.tsx";
+import Faq from "./components/faq/faq.tsx";
 // import App from "./App.tsx";
 i18next
   .use(Backend)
@@ -79,6 +80,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <About />
           <Programs />
           <Donations />
+          <Faq />
           <Footer />
           <Routes>{/* <Route path="/*" element={<App />} /> */}</Routes>
         </BrowserRouter>
