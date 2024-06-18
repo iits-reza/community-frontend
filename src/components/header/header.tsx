@@ -90,7 +90,7 @@ export const Header = () => {
           />
         </button>
         {isMenuOpen && (
-          <ul className="absolute w-[250px] h-auto py-[10px] right-0 flex flex-col items-center justify-center bg-white border-2 border-primary rounded-md">
+          <ul className="absolute w-[200px] h-auto py-[10px] right-0 flex flex-col items-center justify-center bg-white border-2 border-primary rounded-md">
             <li className="w-full px-10 py-3 border-b-2">Langauage</li>
             <hr />
             {languages.map((lng) => (

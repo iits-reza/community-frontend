@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "../button";
 
 function Donations() {
@@ -16,7 +15,7 @@ function Donations() {
       </div>
       <div className="flex flex-row">
         <video
-          src="https://www.youtube.com/watch?v=h3W2xKcGLM8"
+          src="https://www.youtube.com/watch?v=JnYBvLY0GOg"
           width="750"
           height="500"
           controls
