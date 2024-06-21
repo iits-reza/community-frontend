@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Footer() {
   return (
-    <footer className="bg-[#F0F4E6] p-[80px] flex flex-col gap-5">
+    <footer className="bg-[#F0F4E6] p-[80px] flex flex-col gap-5" id="footer">
       <h2 className="text-[23px] font-title border-primary border-b-2 pb-4">
         <FontAwesomeIcon icon={faLeaf} fontSize={25} className="mr-2" />
         The Community
