@@ -163,9 +163,7 @@ export const Header = () => {
         )}
       </div>
       <Button
-        className={`header__top-button ${
-          isVisible ? "header__top-button_visible" : "header__top-button_hidden"
-        }`}
+        className={`fixed bottom-[25px] right-[50px] ${!isVisible && "hidden"}`}
         onClick={scrollToTop}
       >
         &uarr;
