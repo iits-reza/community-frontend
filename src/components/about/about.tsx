@@ -12,7 +12,10 @@ const aboutList = [
 ];
 const About = () => {
   return (
-    <div className="w-full flex flex-row justify-center bg-[#F0F4e6] gap-[80px] py-[80px]">
+    <div
+      className="w-full flex flex-row justify-center bg-[#F0F4e6] gap-[80px] py-[80px]"
+      id="about"
+    >
       <img
         src={AboutImage}
         alt="About image"

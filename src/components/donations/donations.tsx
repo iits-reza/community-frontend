@@ -2,7 +2,10 @@ import { Button } from "../button";
 
 function Donations() {
   return (
-    <div className="flex flex-row bg-[#123E23] justify-between p-[80px]">
+    <div
+      className="flex flex-row bg-[#123E23] justify-between p-[80px]"
+      id="donations"
+    >
       <div className="flex flex-col justify-between gap-[90px]">
         <h1 className="font-title text-[40px] text-white w-[600px] ">
           Let's show our mutual concern by helping those who are less

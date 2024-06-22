@@ -23,7 +23,7 @@ const events = [
 
 const Programs = () => {
   return (
-    <div className="flex flex-col p-[80px] gap-[25px]">
+    <div className="flex flex-col p-[80px] gap-[25px]" id="programs">
       <div className="flex flex-row justify-between">
         <h1 className="text-[40px] font-title">Events and Programs</h1>
         <Button variant="primary">All events & programs</Button>

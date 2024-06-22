@@ -89,20 +89,74 @@ export const Header = () => {
       </Link>
       <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <FontAwesomeIcon icon={faCertificate} />
-          <a>{t("header.home")}</a>
+          <Link
+            to="home"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={590}
+            className="gap-3 flex items-center"
+            href="#home"
+          >
+            <FontAwesomeIcon icon={faCertificate} />
+            <a>{t("header.home")}</a>
+          </Link>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <FontAwesomeIcon icon={faCertificate} />
-          <a>{t("header.about_community")}</a>
+          <Link
+            to="about"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={590}
+            className="gap-3 flex items-center"
+            href="#about"
+          >
+            <FontAwesomeIcon icon={faCertificate} />
+            <a>{t("header.about_community")}</a>
+          </Link>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <FontAwesomeIcon icon={faCertificate} />
-          <a>{t("header.donation")}</a>
+          <Link
+            to="donations"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={590}
+            className="gap-3 flex items-center"
+            href="#donations"
+          >
+            <FontAwesomeIcon icon={faCertificate} />
+            <a>{t("header.donation")}</a>
+          </Link>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <FontAwesomeIcon icon={faCertificate} />
-          <a>{t("header.programs_events")}</a>
+          <Link
+            to="programs"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={590}
+            className="gap-3 flex items-center"
+            href="#programs"
+          >
+            <FontAwesomeIcon icon={faCertificate} />
+            <a>{t("header.programs_events")}</a>
+          </Link>
+        </li>
+        <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
+          <Link
+            to="faq"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={490}
+            className="gap-3 flex items-center"
+            href="#faq"
+          >
+            <FontAwesomeIcon icon={faCertificate} />
+            <a>{t("header.faq")}</a>
+          </Link>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
           <Link

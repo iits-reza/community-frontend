@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./global/default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
@@ -80,17 +80,22 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Element name="HomeFC" className="element">
             <Home />
           </Element>
-          <About />
-          <Programs />
+          <Element name="AboutFC" className="element">
+            <About />
+          </Element>
+          <Element name="ProgramFC" className="element">
+            <Programs />
+          </Element>
           <Donations />
-          <Faq />
+          <Element name="FaqFC" className="element">
+            <Faq />
+          </Element>
           <Element name="ContactFC">
             <Footer />
           </Element>
-
-          <Routes>
+          {/* <Routes>
             <Route path="/footer" element={<Footer />} />
-          </Routes>
+          </Routes> */}
         </BrowserRouter>
       </ApolloProvider>
     </React.StrictMode>

@@ -23,7 +23,7 @@ const accordionData = [
 ];
 function Faq() {
   return (
-    <div className="flex flex-col p-[80px]">
+    <div className="flex flex-col p-[80px]" id="faq">
       <h1 className="text-[40px] text-center font-title">FAQ</h1>
       {accordionData.map((accordion) => (
         <Accordion
