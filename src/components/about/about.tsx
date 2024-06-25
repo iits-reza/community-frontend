@@ -3,6 +3,7 @@ import AboutImage from "../../images/aboutHero.svg";
 import { Button } from "../button";
 import {} from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
+import { useTranslation } from "react-i18next";
 const aboutList = [
   "Donations will be accepted to the right people.",
   "The process is safe, fast and reliable.",
@@ -11,6 +12,8 @@ const aboutList = [
   "Various donation programs according to your interests.",
 ];
 const About = () => {
+  const { t } = useTranslation();
+
   return (
     <div
       className="w-full flex flex-row justify-center bg-[#F0F4e6] gap-[80px] py-[80px]"
@@ -22,21 +25,18 @@ const About = () => {
         className="w-[600px] border-2 border-primary"
       />
       <div className="flex flex-col gap-[25px]">
-        <h1 className="text-[40px] font-title w-[600px]">
-          We ensure that your donations are distributed safely and on target.
-        </h1>
-        {aboutList.map((listItem) => (
+        <h1 className="text-[40px] font-title w-[600px]">{t("about.title")}</h1>
+        {aboutList.map((_, index) => (
           <div className="flex flex-row items-center gap-2">
             <FontAwesomeIcon icon={faCircleCheck} />
             <p className="w-[600px] text[24px]">
-              {listItem}
-              people.
+              {t(`about.description_list.${index}`)}
             </p>
           </div>
         ))}
 
         <div className="flex gap-2 mt-4">
-          <Button variant="secondary">More about community</Button>
+          <Button variant="secondary">{t("about.moreabout_button")}</Button>
         </div>
       </div>
     </div>

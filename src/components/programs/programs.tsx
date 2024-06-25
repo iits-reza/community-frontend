@@ -2,6 +2,7 @@ import { Button } from "../button";
 import Event1 from "../../images/event1.svg";
 import Event2 from "../../images/event2.svg";
 import Event3 from "../../images/event3.svg";
+import { useTranslation } from "react-i18next";
 
 const events = [
   {
@@ -22,11 +23,13 @@ const events = [
 ];
 
 const Programs = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col p-[80px] gap-[25px]" id="programs">
       <div className="flex flex-row justify-between">
-        <h1 className="text-[40px] font-title">Events and Programs</h1>
-        <Button variant="primary">All events & programs</Button>
+        <h1 className="text-[40px] font-title">{t("programs.title")}</h1>
+        <Button variant="primary">{t("programs.allevts_button")}</Button>
       </div>
       <div className="flex flex-row justify-between gap-[20px]">
         {events.map((event) => (
@@ -38,7 +41,7 @@ const Programs = () => {
             />
             <p>{event.title}</p>
             <span>{event.time_date}</span>
-            <Button variant="secondary">View more</Button>
+            <Button variant="secondary">{t("programs.viewmore_button")}</Button>
           </div>
         ))}
       </div>

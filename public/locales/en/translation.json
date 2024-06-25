@@ -7,10 +7,36 @@
     "programs_events": "Programs & Events",
     "contact": "Contact",
     "faq": "FAQ",
-    "langauge": "Langauge"
+    "language": "Langauge"
   },
-  "home": {},
-  "donations": {},
-  "programs": {},
+  "home": {
+    "title": "Join to your community today and participate in community events.",
+    "description": "Charithy is here to help you distribute aid in a safe, reliable, and secure manner. We ensure that your donations reach the right ",
+    "join_button": "Join now",
+    "seemore_button": "How community center works"
+  },
+  "about": {
+    "title": "We ensure that your donations are distributed safely and on target.",
+    "description_list": [
+      "Donations will be accepted to the right ",
+      "The process is safe, fast and reliable.",
+      "You can choose to donate directly or periodically.",
+      "Choose various payment methods that are safe and reliable.",
+      "Various donation programs according to your interests."
+    ],
+    "moreabout_button": "More about community"
+  },
+  "donations": {
+    "title": "Your donations transform lives, providing vital support to those in need. Join us in creating lasting change and bringing hope to our communities.",
+    "donate_button": "Donate now"
+  },
+  "programs": {
+    "title": "Events and Programs",
+    "allevts_button": "All Events and Programs",
+    "viewmore_button": "View more"
+  },
+  "faq": {
+    "title": "FAQ"
+  },
   "contact": {}
 }

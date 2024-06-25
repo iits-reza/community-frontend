@@ -1,4 +1,5 @@
 import Accordion from "../accordion/accordion";
+import { useTranslation } from "react-i18next";
 const accordionData = [
   {
     title: "What is charity",
@@ -22,9 +23,11 @@ const accordionData = [
   },
 ];
 function Faq() {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col p-[80px]" id="faq">
-      <h1 className="text-[40px] text-center font-title">FAQ</h1>
+      <h1 className="text-[40px] text-center font-title">{t("faq.title")}</h1>
       {accordionData.map((accordion) => (
         <Accordion
           title={accordion.title}
