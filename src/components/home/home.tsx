@@ -1,9 +1,24 @@
 import { Button } from "../button";
 import heroImageHome from "../../images/heroHomePage.svg";
 import { useTranslation } from "react-i18next";
+import InputWithLabel from "../InputWithLabel/InputWithLabel";
+import React from "react";
 
 const Home = () => {
   const { t } = useTranslation();
+  const [formValues, setFormValues] = React.useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    // Add more fields as needed
+  });
+
+  const handleChange = (name: string, value: string) => {
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
 
   return (
     <div className="p-[80px] flex flex-row gap-[80px] w-full justify-center">
@@ -17,6 +32,13 @@ const Home = () => {
           <Button variant="secondary" className="font-primary">
             {t("home.seemore_button")}
           </Button>
+          <InputWithLabel
+            placeholder="Name"
+            label="Name"
+            value={formValues.phone}
+            inputName="fullName"
+            onChange={(value) => handleChange("phone", value)}
+          />
         </div>
       </div>
       <img
