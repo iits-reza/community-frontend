@@ -18,11 +18,11 @@ const InputWithLabel = ({ label, value, inputName, onChange }: Props) => {
     onChange(e.target.value);
   };
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col gap-2">
       <label
         htmlFor={inputName}
-        className={`absolute left-2 w-16 text-center top-[3px] bg-white transition-all ease-linear duration-75 ${
-          isClicked && "top-[-20px]"
+        className={` cursor-text left-2 w-full  top-[3px] ${
+          isClicked && "top-[-20px] cursor-default"
         }`}
         onClick={() => handleInput()}
       >

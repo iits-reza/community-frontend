@@ -74,7 +74,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
+    <header className="fixed z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
       {/* <Link to="/"> */}
       <Link
         className="HomeFC"

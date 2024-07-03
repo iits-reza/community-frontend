@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import "./global/default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
@@ -23,6 +23,7 @@ import Footer from "./components/footer/footer.tsx";
 import Donations from "./components/donations/donations.tsx";
 import Faq from "./components/faq/faq.tsx";
 import { Element } from "react-scroll";
+import AboutCommunity from "./routes/about/about.tsx";
 
 i18next
   .use(Backend)
@@ -93,9 +94,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Element name="ContactFC">
             <Footer />
           </Element>
-          {/* <Routes>
-            <Route path="/footer" element={<Footer />} />
-          </Routes> */}
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<AboutCommunity />} />
+          </Routes>
+          <Outlet />
         </BrowserRouter>
       </ApolloProvider>
     </React.StrictMode>
