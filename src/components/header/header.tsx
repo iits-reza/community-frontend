@@ -12,7 +12,12 @@ import cookies from "js-cookie";
 import translateIcon from "../../images/language.svg";
 import communityLogo from "../../../public/vite.svg";
 import i18next from "i18next";
-import { Link, Events, scrollSpy, animateScroll as scroll } from "react-scroll";
+import {
+  Link as ScrollLink,
+  Events,
+  scrollSpy,
+  animateScroll as scroll,
+} from "react-scroll";
 import { Button } from "../button";
 
 const languages = [
@@ -76,7 +81,7 @@ export const Header = () => {
   return (
     <header className="fixed z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
       {/* <Link to="/"> */}
-      <Link
+      <ScrollLink
         className="HomeFC"
         to="HomeFC"
         spy={true}
@@ -87,24 +92,22 @@ export const Header = () => {
           <img src={communityLogo} width={70} alt="Logo" />
           {/* Community */}
         </h1>
-      </Link>
+      </ScrollLink>
       <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <Link
+          <ScrollLink
             to="home"
             spy={true}
             smooth={true}
-            offset={0}
-            duration={590}
-            className="gap-3 flex items-center"
+            duration={500}
             href="#home"
           >
             <FontAwesomeIcon icon={faCertificate} />
             <a>{t("header.home")}</a>
-          </Link>
+          </ScrollLink>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <Link
+          <ScrollLink
             to="about"
             spy={true}
             smooth={true}
@@ -115,10 +118,10 @@ export const Header = () => {
           >
             <FontAwesomeIcon icon={faCertificate} />
             <a>{t("header.about_community")}</a>
-          </Link>
+          </ScrollLink>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <Link
+          <ScrollLink
             to="donations"
             spy={true}
             smooth={true}
@@ -129,10 +132,10 @@ export const Header = () => {
           >
             <FontAwesomeIcon icon={faCertificate} />
             <a>{t("header.donation")}</a>
-          </Link>
+          </ScrollLink>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <Link
+          <ScrollLink
             to="programs"
             spy={true}
             smooth={true}
@@ -143,10 +146,10 @@ export const Header = () => {
           >
             <FontAwesomeIcon icon={faCertificate} />
             <a>{t("header.programs_events")}</a>
-          </Link>
+          </ScrollLink>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <Link
+          <ScrollLink
             to="faq"
             spy={true}
             smooth={true}
@@ -157,10 +160,10 @@ export const Header = () => {
           >
             <FontAwesomeIcon icon={faCertificate} />
             <a>{t("header.faq")}</a>
-          </Link>
+          </ScrollLink>
         </li>
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <Link
+          <ScrollLink
             to="footer"
             spy={true}
             smooth={true}
@@ -171,7 +174,7 @@ export const Header = () => {
           >
             <FontAwesomeIcon icon={faCertificate} />
             <a>{t("header.contact")}</a>
-          </Link>
+          </ScrollLink>
         </li>
       </ul>
       <div className="relative">

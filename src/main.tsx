@@ -6,7 +6,12 @@ import {
 } from "@apollo/client";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./global/default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +21,6 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 
 import LanguageDetector from "i18next-browser-languagedetector";
-import Home from "./components/home/home.tsx";
 import About from "./components/about/about.tsx";
 import Programs from "./components/programs/programs.tsx";
 import Footer from "./components/footer/footer.tsx";
@@ -24,6 +28,8 @@ import Donations from "./components/donations/donations.tsx";
 import Faq from "./components/faq/faq.tsx";
 import { Element } from "react-scroll";
 import AboutCommunity from "./routes/about/about.tsx";
+// import Home from "./routes/home/home";
+import { Home } from "./routes/home";
 
 i18next
   .use(Backend)
@@ -76,30 +82,23 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <Suspense fallback={loadingMarkup}>
     <React.StrictMode>
       <ApolloProvider client={client}>
-        <BrowserRouter>
+        <Router>
           <Header />
-          <Element name="HomeFC" className="element">
-            <Home />
-          </Element>
-          <Element name="AboutFC" className="element">
-            <About />
-          </Element>
-          <Element name="ProgramFC" className="element">
-            <Programs />
-          </Element>
-          <Donations />
-          <Element name="FaqFC" className="element">
-            <Faq />
-          </Element>
-          <Element name="ContactFC">
-            <Footer />
-          </Element>
+          {/* <Outlet /> */}
           <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/about" element={<AboutCommunity />} />
+            <Route index path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/programs" element={<Programs />} />
+            <Route path="/donations" element={<Donations />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/about-community" element={<AboutCommunity />} />
+            {/* 
+         
+          
+           */}
           </Routes>
-          <Outlet />
-        </BrowserRouter>
+          <Footer />
+        </Router>
       </ApolloProvider>
     </React.StrictMode>
   </Suspense>
