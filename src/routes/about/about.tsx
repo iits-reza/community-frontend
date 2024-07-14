@@ -1,67 +1,61 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
-}
+import React from "react";
 
 const AboutCommunity: React.FC = () => {
-  const [formData, setFromData] = useState<FormData>({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFromData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
-  };
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Message:
-          <input
-            type="text"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <div className="flex flex-col pt-[160px] p-[80px] gap-[50px]">
+      <h1 className="font-primary text-section-title">About our community</h1>
+      <p className="text-primary">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officia
+        obcaecati eius esse quos praesentium doloremque harum excepturi impedit
+        vero repellat, commodi suscipit dolorum ad incidunt modi quia quibusdam
+        explicabo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+        officia obcaecati eius esse quos praesentium doloremque harum excepturi
+        impedit vero repellat, commodi suscipit dolorum ad incidunt modi quia
+        quibusdam explicabo. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Sunt officia obcaecati eius esse quos praesentium doloremque harum
+        excepturi impedit vero repellat, commodi suscipit dolorum ad incidunt
+        modi quia quibusdam explicabo.
+      </p>
+      <h1 className="font-primary text-section-title">About our community</h1>
+      <p className="text-primary">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officia
+        obcaecati eius esse quos praesentium doloremque harum excepturi impedit
+        vero repellat, commodi suscipit dolorum ad incidunt modi quia quibusdam
+        explicabo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+        officia obcaecati eius esse quos praesentium doloremque harum excepturi
+        impedit vero repellat, commodi suscipit dolorum ad incidunt modi quia
+        quibusdam explicabo. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Sunt officia obcaecati eius esse quos praesentium doloremque harum
+        excepturi impedit vero repellat, commodi suscipit dolorum ad incidunt
+        modi quia quibusdam explicabo.
+      </p>
+      <h1 className="font-primary text-section-title">About our community</h1>
+      <p className="text-primary">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officia
+        obcaecati eius esse quos praesentium doloremque harum excepturi impedit
+        vero repellat, commodi suscipit dolorum ad incidunt modi quia quibusdam
+        explicabo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+        officia obcaecati eius esse quos praesentium doloremque harum excepturi
+        impedit vero repellat, commodi suscipit dolorum ad incidunt modi quia
+        quibusdam explicabo. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Sunt officia obcaecati eius esse quos praesentium doloremque harum
+        excepturi impedit vero repellat, commodi suscipit dolorum ad incidunt
+        modi quia quibusdam explicabo.
+      </p>
+      <h1 className="font-primary text-section-title">About our community</h1>
+      <p className="text-primary">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officia
+        obcaecati eius esse quos praesentium doloremque harum excepturi impedit
+        vero repellat, commodi suscipit dolorum ad incidunt modi quia quibusdam
+        explicabo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+        officia obcaecati eius esse quos praesentium doloremque harum excepturi
+        impedit vero repellat, commodi suscipit dolorum ad incidunt modi quia
+        quibusdam explicabo. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Sunt officia obcaecati eius esse quos praesentium doloremque harum
+        excepturi impedit vero repellat, commodi suscipit dolorum ad incidunt
+        modi quia quibusdam explicabo.
+      </p>
+    </div>
   );
 };
 export default AboutCommunity;

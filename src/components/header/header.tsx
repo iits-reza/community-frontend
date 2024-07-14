@@ -80,7 +80,6 @@ export const Header = () => {
 
   return (
     <header className="fixed z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
-      {/* <Link to="/"> */}
       <ScrollLink
         className="HomeFC"
         to="HomeFC"
