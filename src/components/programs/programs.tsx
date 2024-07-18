@@ -3,6 +3,7 @@ import Event1 from "../../images/event1.svg";
 import Event2 from "../../images/event2.svg";
 import Event3 from "../../images/event3.svg";
 import { useTranslation } from "react-i18next";
+import { ProgramEvent } from "../programEvent/programEvent";
 
 const events = [
   {
@@ -33,16 +34,14 @@ const Programs = () => {
       </div>
       <div className="flex flex-row justify-between gap-[20px]">
         {events.map((event) => (
-          <div className=" flex flex-col gap-4">
-            <img
-              src={event.image}
-              alt={event.title}
-              className="w-[354px] h-[200px]"
+          <>
+            <ProgramEvent
+              buttonText={t("programs.viewmore_button")}
+              date={event.time_date}
+              imageSrc={event.image}
+              title={event.title}
             />
-            <p>{event.title}</p>
-            <span>{event.time_date}</span>
-            <Button variant="secondary">{t("programs.viewmore_button")}</Button>
-          </div>
+          </>
         ))}
       </div>
     </div>
