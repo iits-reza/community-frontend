@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { PropsWithChildren } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
@@ -33,7 +34,7 @@ const languages = [
   },
 ];
 
-export const Header = () => {
+export const Header = ({ children }: PropsWithChildren) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentLanguageCode = cookies.get("i18next") || "en";
   const [isVisible, setIsVisible] = useState(false);
@@ -79,7 +80,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="fixed z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
+    <header className="fixed top-0 z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
       <ScrollLink
         className="HomeFC"
         to="HomeFC"
@@ -89,10 +90,10 @@ export const Header = () => {
       >
         <h1 className="font-title font-extrabold text-xl">
           <img src={communityLogo} width={70} alt="Logo" />
-          {/* Community */}
         </h1>
       </ScrollLink>
-      <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
+      {children}
+      {/* <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
         <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
           <ScrollLink
             to="home"
@@ -220,7 +221,7 @@ export const Header = () => {
             ))}
           </ul>
         )}
-      </div>
+      </div> */}
       <Button
         className={`fixed bottom-[25px] right-[50px] border-primary border-2 z-10 ${
           !isVisible && "hidden"

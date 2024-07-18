@@ -83,7 +83,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
       <ApolloProvider client={client}>
         <Router>
-          <Header />
+          {/* <Header /> */}
           {/* <Outlet /> */}
           <Routes>
             <Route index path="/" element={<Home />} />
