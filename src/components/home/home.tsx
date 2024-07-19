@@ -69,7 +69,7 @@ const HomeComponent = () => {
               duration={500}
               href="#home"
             >
-              <FontAwesomeIcon icon={faCertificate} />
+              <FontAwesomeIcon icon={faCertificate} className="mr-3" />
               <a>{t("header.home")}</a>
             </ScrollLink>
           </li>

@@ -82,11 +82,11 @@ export const Header = ({ children }: PropsWithChildren) => {
   return (
     <header className="fixed top-0 z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
       <ScrollLink
-        className="HomeFC"
-        to="HomeFC"
+        to="home"
         spy={true}
         smooth={true}
         duration={500}
+        href="#home"
       >
         <h1 className="font-title font-extrabold text-xl">
           <img src={communityLogo} width={70} alt="Logo" />
