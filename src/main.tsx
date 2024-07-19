@@ -30,6 +30,7 @@ import { Element } from "react-scroll";
 import AboutCommunity from "./routes/about/about.tsx";
 // import Home from "./routes/home/home";
 import { Home } from "./routes/home";
+import EventsPrograms from "./routes/eventsPrograms/eventsPrograms.tsx";
 
 i18next
   .use(Backend)
@@ -92,6 +93,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="/donations" element={<Donations />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/about-community" element={<AboutCommunity />} />
+            <Route path="/all-events" element={<EventsPrograms />} />
             {/* 
          
           

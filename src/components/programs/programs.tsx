@@ -4,6 +4,7 @@ import Event2 from "../../images/event2.svg";
 import Event3 from "../../images/event3.svg";
 import { useTranslation } from "react-i18next";
 import { ProgramEvent } from "../programEvent/programEvent";
+import { useNavigate } from "react-router-dom";
 
 const events = [
   {
@@ -25,23 +26,24 @@ const events = [
 
 const Programs = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col p-[80px] gap-[25px]" id="programs">
       <div className="flex flex-row justify-between">
         <h1 className="text-[40px] font-title">{t("programs.title")}</h1>
-        <Button variant="primary">{t("programs.allevts_button")}</Button>
+        <Button variant="primary" onClick={() => navigate("/all-events")}>
+          {t("programs.allevts_button")}
+        </Button>
       </div>
-      <div className="flex flex-row justify-between gap-[20px]">
+      <div className="grid grid-cols-3  gap-[30px]">
         {events.map((event) => (
-          <>
-            <ProgramEvent
-              buttonText={t("programs.viewmore_button")}
-              date={event.time_date}
-              imageSrc={event.image}
-              title={event.title}
-            />
-          </>
+          <ProgramEvent
+            buttonText={t("programs.viewmore_button")}
+            date={event.time_date}
+            imageSrc={event.image}
+            title={event.title}
+          />
         ))}
       </div>
     </div>

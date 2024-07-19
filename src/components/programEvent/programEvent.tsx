@@ -9,7 +9,7 @@ type Props = {
 
 export const ProgramEvent = ({ imageSrc, buttonText, date, title }: Props) => {
   return (
-    <div className=" flex flex-col gap-4">
+    <div className=" flex flex-col gap-4 p-[10px]">
       <img src={imageSrc} alt={title} className="w-[354px] h-[200px]" />
       <p>{title}</p>
       <span>{date}</span>

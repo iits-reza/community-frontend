@@ -21,6 +21,7 @@ const variants = cva(
         ],
         secondary: ["bg-lime-50", "text-primary", "hover:bg-lime-400"],
         social: ["bg-opacity-0", "hover:text-white hover:bg-primary"],
+        selected: ["bg-primary text-white hover:text-white"],
       },
       size: {
         default: ["text-lg", "py-2", "px-8"],

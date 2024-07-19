@@ -4,6 +4,7 @@ import { Button } from "../button";
 import {} from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 const aboutList = [
   "Donations will be accepted to the right people.",
   "The process is safe, fast and reliable.",
@@ -12,6 +13,7 @@ const aboutList = [
   "Various donation programs according to your interests.",
 ];
 const About = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   return (
@@ -36,7 +38,12 @@ const About = () => {
         ))}
 
         <div className="flex gap-2 mt-4">
-          <Button variant="secondary">{t("about.moreabout_button")}</Button>
+          <Button
+            variant="secondary"
+            onClick={() => navigate("/about-community")}
+          >
+            {t("about.moreabout_button")}
+          </Button>
         </div>
       </div>
     </div>
