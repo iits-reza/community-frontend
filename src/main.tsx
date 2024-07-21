@@ -90,7 +90,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route index path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/programs" element={<Programs />} />
-            <Route path="/donations" element={<Donations />} />
+            {/* <Route path="/donations" element={<Donations />} /> */}
             <Route path="/faq" element={<Faq />} />
             <Route path="/about-community" element={<AboutCommunity />} />
             <Route path="/all-events" element={<EventsPrograms />} />

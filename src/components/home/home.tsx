@@ -87,7 +87,7 @@ const HomeComponent = () => {
               <a>{t("header.about_community")}</a>
             </ScrollLink>
           </li>
-          <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
+          {/* <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
             <ScrollLink
               to="donations"
               spy={true}
@@ -100,7 +100,7 @@ const HomeComponent = () => {
               <FontAwesomeIcon icon={faCertificate} />
               <a>{t("header.donation")}</a>
             </ScrollLink>
-          </li>
+          </li> */}
           <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
             <ScrollLink
               to="programs"

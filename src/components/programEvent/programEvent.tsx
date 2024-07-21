@@ -5,12 +5,28 @@ type Props = {
   title: string;
   date: string;
   buttonText: string;
+  className: string;
+  onClick: () => void;
 };
 
-export const ProgramEvent = ({ imageSrc, buttonText, date, title }: Props) => {
+export const ProgramEvent = ({
+  imageSrc,
+  buttonText,
+  date,
+  title,
+  className,
+  onClick,
+}: Props) => {
   return (
-    <div className=" flex flex-col gap-4 p-[10px]">
-      <img src={imageSrc} alt={title} className="w-[354px] h-[200px]" />
+    <div
+      className={`flex flex-col gap-4 p-[10px] ${className}`}
+      onClick={onClick}
+    >
+      <img
+        src={imageSrc}
+        alt={title}
+        className="w-full h-full overflow-hidden"
+      />
       <p>{title}</p>
       <span>{date}</span>
       <Button variant="secondary">{buttonText}</Button>

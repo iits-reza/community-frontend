@@ -39,6 +39,7 @@ const Programs = () => {
       <div className="grid grid-cols-3  gap-[30px]">
         {events.map((event) => (
           <ProgramEvent
+            className="w-[400px] h-[400px]"
             buttonText={t("programs.viewmore_button")}
             date={event.time_date}
             imageSrc={event.image}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../../components/header/header";
 import { Button } from "../../components/button";
 import { useNavigate } from "react-router-dom";
@@ -182,6 +182,13 @@ const events = [
 const EventsPrograms: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [isGrid, setIsGrid] = useState(true);
+
+  const handleGrid = (arg: string) => {
+    if (arg == "noGrid") setIsGrid(false);
+    else if (arg == "grid") setIsGrid(true);
+    console.log(isGrid);
+  };
   return (
     <div className="flex flex-col pt-[190px] gap-[25px] justify-center">
       <Header>
@@ -201,17 +208,29 @@ const EventsPrograms: React.FC = () => {
           </p>
         </div>
         <div>
-          <Button variant="selected" disabled>
+          <Button
+            variant={`${isGrid && "selected"}`}
+            onClick={() => handleGrid("grid")}
+          >
             <FontAwesomeIcon icon={faGrip} />
           </Button>
-          <Button>
+          <Button
+            onClick={() => handleGrid("noGrid")}
+            variant={`${!isGrid && "selected"}`}
+          >
             <FontAwesomeIcon icon={faImage} />
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-4  gap-[30px] px-[80px]">
+      <div
+        className={`grid ${
+          isGrid == true ? "grid-rows-5 grid-cols-4" : "grid-rows-5 grid-cols-2"
+        }  gap-[30px] px-[80px] place-items-center`}
+      >
         {events.map((event) => (
           <ProgramEvent
+            onClick={handleOpenModal}
+            className={`${isGrid == true ? "w-[300px]" : "w-[500px]"}`}
             buttonText={t("programs.viewmore_button")}
             date={event.time_date}
             imageSrc={event.image}
