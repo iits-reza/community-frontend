@@ -9,7 +9,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const ProgramEvent = ({
+export const EventCard = ({
   imageSrc,
   buttonText,
   date,

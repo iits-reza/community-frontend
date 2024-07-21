@@ -30,7 +30,7 @@ import { Element } from "react-scroll";
 import AboutCommunity from "./routes/about/about.tsx";
 // import Home from "./routes/home/home";
 import { Home } from "./routes/home";
-import EventsPrograms from "./routes/eventsPrograms/eventsPrograms.tsx";
+import EventsPrograms from "./routes/Events/Events.tsx";
 
 i18next
   .use(Backend)

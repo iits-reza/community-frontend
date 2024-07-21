@@ -3,7 +3,7 @@ import Event1 from "../../images/event1.svg";
 import Event2 from "../../images/event2.svg";
 import Event3 from "../../images/event3.svg";
 import { useTranslation } from "react-i18next";
-import { ProgramEvent } from "../programEvent/programEvent";
+import { EventCard } from "../eventCard/eventCard";
 import { useNavigate } from "react-router-dom";
 
 const events = [
@@ -36,9 +36,10 @@ const Programs = () => {
           {t("programs.allevts_button")}
         </Button>
       </div>
-      <div className="grid grid-cols-3  gap-[30px]">
+      <div className="grid grid-cols-3 place-items-center  gap-[30px]">
         {events.map((event) => (
-          <ProgramEvent
+          <EventCard
+            onClick={() => console.log("hello")}
             className="w-[400px] h-[400px]"
             buttonText={t("programs.viewmore_button")}
             date={event.time_date}

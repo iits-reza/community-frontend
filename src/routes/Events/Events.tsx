@@ -8,7 +8,7 @@ import { faGrip, faHome, faImage } from "@fortawesome/free-solid-svg-icons";
 import Event1 from "../../images/event1.svg";
 import Event2 from "../../images/event2.svg";
 import Event3 from "../../images/event3.svg";
-import { ProgramEvent } from "../../components/programEvent/programEvent";
+import { EventCard } from "../../components/eventCard/eventCard";
 import { useTranslation } from "react-i18next";
 
 const events = [
@@ -179,7 +179,7 @@ const events = [
   },
 ];
 
-const EventsPrograms: React.FC = () => {
+const Events: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isGrid, setIsGrid] = useState(true);
@@ -188,6 +188,10 @@ const EventsPrograms: React.FC = () => {
     if (arg == "noGrid") setIsGrid(false);
     else if (arg == "grid") setIsGrid(true);
     console.log(isGrid);
+  };
+
+  const handleOpenModal = () => {
+    console.log("open modal clicked");
   };
   return (
     <div className="flex flex-col pt-[190px] gap-[25px] justify-center">
@@ -228,7 +232,7 @@ const EventsPrograms: React.FC = () => {
         }  gap-[30px] px-[80px] place-items-center`}
       >
         {events.map((event) => (
-          <ProgramEvent
+          <EventCard
             onClick={handleOpenModal}
             className={`${isGrid == true ? "w-[300px]" : "w-[500px]"}`}
             buttonText={t("programs.viewmore_button")}
@@ -241,4 +245,4 @@ const EventsPrograms: React.FC = () => {
     </div>
   );
 };
-export default EventsPrograms;
+export default Events;
