@@ -10,6 +10,7 @@ import Event2 from "../../images/event2.svg";
 import Event3 from "../../images/event3.svg";
 import { EventCard } from "../../components/eventCard/eventCard";
 import { useTranslation } from "react-i18next";
+import { ProgramModal } from "../../components/programModal/programModal";
 
 const events = [
   {
@@ -179,10 +180,13 @@ const events = [
   },
 ];
 
+// This is a route for events
+
 const Events: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isGrid, setIsGrid] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleGrid = (arg: string) => {
     if (arg == "noGrid") setIsGrid(false);
@@ -192,9 +196,19 @@ const Events: React.FC = () => {
 
   const handleOpenModal = () => {
     console.log("open modal clicked");
+    setIsModalOpen(true);
   };
   return (
     <div className="flex flex-col pt-[190px] gap-[25px] justify-center">
+      {isModalOpen && (
+        <ProgramModal
+          imageSrc="https://www.econlib.org/wp-content/uploads/2018/02/Charity-scaled.jpeg"
+          title="Title"
+          description="Charity is that pure love which our Savior Jesus Christ has. He has commanded us to love one another as He loves us. The scriptures tell us that charity comes from a pure heart (see 1 Timothy 1:5). We have pure love when, from the heart, we show genuine concern and compassion for all our brothers and sisters."
+          timeData="Jul,24, 2024 - 12:30 PM"
+          onCloseModal={() => setIsModalOpen(false)}
+        />
+      )}
       <Header>
         <Button
           onClick={() => navigate("/")}
@@ -234,7 +248,9 @@ const Events: React.FC = () => {
         {events.map((event) => (
           <EventCard
             onClick={handleOpenModal}
-            className={`${isGrid == true ? "w-[300px]" : "w-[500px]"}`}
+            className={`${
+              isGrid == true ? "w-[400px] h-[400px]" : "w-[500px]"
+            }`}
             buttonText={t("programs.viewmore_button")}
             date={event.time_date}
             imageSrc={event.image}
