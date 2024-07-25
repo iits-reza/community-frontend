@@ -1,13 +1,11 @@
 import { Button } from "../button";
 import heroImageHome from "../../images/heroHomePage.svg";
 import { useTranslation } from "react-i18next";
-// import InputWithLabel from "../InputWithLabel/InputWithLabel";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../header/header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import translateIcon from "../../images/language.svg";
-import communityLogo from "../../../public/vite.svg";
 import i18next from "i18next";
 import cookies from "js-cookie";
 import {
@@ -33,24 +31,12 @@ const HomeComponent = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
-  const [isVisible, setIsVisible] = useState(false);
-  const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
+  // const [isVisible, setIsVisible] = useState(false);
+  // const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
   const { t } = useTranslation();
 
   const navigate = useNavigate();
-  const [formValues, setFormValues] = React.useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    // Add more fields as needed
-  });
 
-  const handleChange = (name: string, value: string) => {
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };
   const goToABout = () => {
     navigate("/about-community");
   };
