@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
 interface FormData {
   name: string;
   email: string;

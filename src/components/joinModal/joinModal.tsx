@@ -6,37 +6,36 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import InputWithLabel from "../InputWithLabel/InputWithLabel";
-import React, { ChangeEvent } from "react";
+import React, { useState } from "react";
+import MembershipForm from "../membershipForm/membershipForm";
 
 type Props = {
   onCloseModal: () => void;
   title: string;
   description: string;
 };
+interface FormData {
+  firstName: "";
+  lastName: "";
+  email: "";
+  phone: "";
+}
 
 export const JoinModal = ({ description, onCloseModal, title }: Props) => {
-  const [formValues, setFormValues] = React.useState({
+  const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     // Add more fields as needed
   });
-  //   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //     const { name, value } = e.target;
-  //     setFromData({
-  //       ...formData,
-  //       [name]: value,
-  //     });
-  //   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
+    setFormData((prevState) => ({
+      ...prevState,
       [name]: value,
-    });
+    }));
   };
   return (
     <>
@@ -57,16 +56,7 @@ export const JoinModal = ({ description, onCloseModal, title }: Props) => {
             <DialogTitle className="font-bold">{title}</DialogTitle>
             <Description>{description}</Description>
             <div>
-              <form>
-                <InputWithLabel
-                  inputName=""
-                  label="First name"
-                  placeholder="First name"
-                  value={formValues.firstName}
-                  onChange={() => handleChange}
-                />
-                <button type="submit">Submit</button>
-              </form>
+              <MembershipForm />
             </div>
             <div className="flex gap-4">
               <button onClick={onCloseModal}>Close</button>

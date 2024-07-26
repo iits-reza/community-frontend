@@ -29,6 +29,7 @@ const languages = [
 ];
 const HomeComponent = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
   // const [isVisible, setIsVisible] = useState(false);
@@ -180,7 +181,11 @@ const HomeComponent = () => {
         <h1 className="text-[40px] font-title w-[600px]">{t("home.title")}</h1>
         <p className="w-[600px] text[24px]">{t("home.description")}</p>
         <div className="flex gap-2">
-          <Button variant="primary" className="font-primary">
+          <Button
+            variant="primary"
+            className="font-primary"
+            onClick={() => setIsModalOpen(true)}
+          >
             {t("home.join_button")}
           </Button>
           {/* <Link to="/about"> */}
