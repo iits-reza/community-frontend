@@ -15,6 +15,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link as ScrollLink } from "react-scroll";
 
+type Props = {
+  setIsModalOpen: (arg: boolean) => void;
+};
+
 const languages = [
   {
     code: "en",
@@ -27,9 +31,8 @@ const languages = [
     dir: "rtl",
   },
 ];
-const HomeComponent = () => {
+const HomeComponent = ({ setIsModalOpen }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
   // const [isVisible, setIsVisible] = useState(false);

@@ -10,7 +10,8 @@ import React, { useState } from "react";
 import MembershipForm from "../membershipForm/membershipForm";
 
 type Props = {
-  onCloseModal: () => void;
+  onCloseModal: (arg: boolean) => void;
+  // setIsModalOpen: ;
   title: string;
   description: string;
 };
@@ -21,7 +22,11 @@ interface FormData {
   phone: "";
 }
 
-export const JoinModal = ({ description, onCloseModal, title }: Props) => {
+export const MembershipModal = ({
+  description,
+  onCloseModal,
+  title,
+}: Props) => {
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -42,24 +47,28 @@ export const JoinModal = ({ description, onCloseModal, title }: Props) => {
       {/* <button onClick={() => setIsOpen(true)}>Open dialog</button> */}
       <Dialog
         open={true}
-        onClose={() => console.log("closed")}
+        onClose={() => onCloseModal(false)}
         className="relative z-50 "
       >
-        <div className="fixed inset-0 flex  items-center justify-center p-4 ">
+        <div className="fixed inset-0 flex  items-center justify-center p-4 bg-black bg-opacity-20">
           <DialogPanel className="relative space-y-4 bg-white p-12 border-[2px] border-primary w-[900px]">
             <FontAwesomeIcon
               icon={faClose}
-              onClick={onCloseModal}
+              onClick={() => onCloseModal(false)}
               size="xl"
               className="absolute top-2 right-5 cursor-pointer hover:opacity-45"
             />
-            <DialogTitle className="font-bold">{title}</DialogTitle>
-            <Description>{description}</Description>
+            <DialogTitle className="font-bold border-t pt-5">
+              {title}
+            </DialogTitle>
+            <Description className="border-t  pt-5">{description}</Description>
             <div>
               <MembershipForm />
             </div>
-            <div className="flex gap-4">
-              <button onClick={onCloseModal}>Close</button>
+            <div className="flex gap-4 border-t-2 mt-9 pt-4">
+              <button onClick={() => onCloseModal(false)} className="">
+                Close dialog
+              </button>
             </div>
           </DialogPanel>
         </div>
