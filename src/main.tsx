@@ -1,21 +1,16 @@
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   gql,
 } from "@apollo/client";
-import React, { Suspense } from "react";
-import ReactDOM from "react-dom/client";
-import {
-  BrowserRouter as Router,
-  Outlet,
-  Route,
-  Routes,
-} from "react-router-dom";
+
 import "./global/default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
-import { Header } from "./components/header/header.tsx";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
@@ -24,9 +19,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import About from "./components/about/about.tsx";
 import Programs from "./components/programs/programs.tsx";
 import Footer from "./components/footer/footer.tsx";
-import Donations from "./components/donations/donations.tsx";
 import Faq from "./components/faq/faq.tsx";
-import { Element } from "react-scroll";
 import AboutCommunity from "./routes/about/about.tsx";
 // import Home from "./routes/home/home";
 import { Home } from "./routes/home";
@@ -50,22 +43,10 @@ i18next
       loadPath: "/locales/{{lng}}/translation.json",
     },
   });
-const client = new ApolloClient({
-  uri: "https://flyby-router-demo.herokuapp.com/",
-  cache: new InMemoryCache(),
-});
 
-client.query({
-  query: gql`
-    query GetLocations {
-      locations {
-        id
-        name
-        description
-        photo
-      }
-    }
-  `,
+const client = new ApolloClient({
+  uri: "http://localhost:3000/api/graphql",
+  cache: new InMemoryCache(),
 });
 
 const loadingMarkup = (
@@ -94,10 +75,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="/faq" element={<Faq />} />
             <Route path="/about-community" element={<AboutCommunity />} />
             <Route path="/all-events" element={<EventsPrograms />} />
-            {/* 
-         
-          
-           */}
           </Routes>
           <Footer />
         </Router>
