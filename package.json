@@ -19,6 +19,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^2.1.2",
     "@headlessui/tailwindcss": "^0.2.1",
+    "@keystone-6/document-renderer": "^1.1.2",
     "@types/js-cookie": "^3.0.6",
     "@types/react-scroll": "^1.8.10",
     "classnames": "^2.5.1",

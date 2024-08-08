@@ -64,9 +64,9 @@ export const Home = () => {
       <About />
       {/* <Donations /> */}
       <Programs />
-      {faqData.map((faq) => (
-        <Faq title={faq.title} description={faq.content} />
-      ))}
+      {/* {faqData.map((faq) => ( */}
+      <Faq faqData={faqData} />
+      {/* ))} */}
     </div>
   );
 };

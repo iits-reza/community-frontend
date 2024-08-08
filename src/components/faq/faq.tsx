@@ -1,28 +1,63 @@
+import React, { useState } from "react";
 import Accordion from "../accordion/accordion";
 import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCertificate } from "@fortawesome/free-solid-svg-icons";
+import {
+  DocumentRenderer,
+  DocumentRendererProps,
+} from "@keystone-6/document-renderer";
 
-type Props = {
+interface Props {
   title: string;
-  description: string;
-};
+  description: React.ComponentType;
+  faqData: object[];
+}
 
 const renderers: DocumentRendererProps["renderers"] = {
-  inline: {},
+  // use your editor's autocomplete to see what other renderers you can override
+  inline: {
+    bold: ({ children }) => {
+      return <strong>{children}</strong>;
+    },
+  },
   block: {
-    paragraph: ({ children }) => {
-      return <p className="whitespace-pre-line ">{children}</p>;
+    paragraph: ({ children, textAlign }) => {
+      return <p style={{ textAlign }}>{children}</p>;
     },
   },
 };
 
-function Faq({ title, description }: Props) {
+function Faq({ title, description, faqData }: Props) {
   const { t } = useTranslation();
 
   return (
     <div className="flex flex-col px-20" id="faq">
-      <h1 className="text-[40px] text-center font-title">{t("faq.title")}</h1>
+      <h1 className="text-[40px] pb-[20px] text-center font-title">
+        {t("faq.title")}
+      </h1>
       {/* {accordionData.map((accordion) => ( */}
-      <Accordion title={title} description={description} />
+      {faqData.map((faq) => (
+        <Accordion
+          title={faq.title}
+          description={
+            <DocumentRenderer
+              document={faq.content.document || []}
+              renderers={renderers}
+            />
+            // faq.content.document
+          }
+        />
+      ))}
+      {/* <Accordion
+        title={title}
+        description={
+          <DocumentRenderer
+            document={description || []}
+            renderers={renderers}
+          />
+        }
+      /> */}
       {/* ))} */}
     </div>
   );
