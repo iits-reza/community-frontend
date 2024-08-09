@@ -8,28 +8,6 @@ import { useState } from "react";
 import { MembershipModal } from "../../components/membershipModal/membershipModal";
 import { gql, useQuery } from "@apollo/client";
 
-const accordionData = [
-  {
-    title: "What is charity",
-    description:
-      "Charity is the voluntary provision of assistance to those in need. It serves as a humanitarian act, and is unmotivated by self-interest. Various philosophies about charity exist, with frequent associations with religion.",
-  },
-  {
-    title: "What is charity",
-    description:
-      "Charity is the voluntary provision of assistance to those in need. It serves as a humanitarian act, and is unmotivated by self-interest. Various philosophies about charity exist, with frequent associations with religion.",
-  },
-  {
-    title: "What is charity",
-    description:
-      "Charity is the voluntary provision of assistance to those in need. It serves as a humanitarian act, and is unmotivated by self-interest. Various philosophies about charity exist, with frequent associations with religion.",
-  },
-  {
-    title: "What is charity",
-    description:
-      "Charity is the voluntary provision of assistance to those in need. It serves as a humanitarian act, and is unmotivated by self-interest. Various philosophies about charity exist, with frequent associations with religion.",
-  },
-];
 const GET_FAQS = gql`
   query Faqs {
     faqs {

@@ -1,16 +1,13 @@
-import React, { useState } from "react";
 import Accordion from "../accordion/accordion";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCertificate } from "@fortawesome/free-solid-svg-icons";
 import {
   DocumentRenderer,
   DocumentRendererProps,
 } from "@keystone-6/document-renderer";
 
 interface Props {
-  title: string;
-  description: React.ComponentType;
+  // title: string;
+  // description: React.ComponentType;
   faqData: object[];
 }
 
@@ -28,7 +25,7 @@ const renderers: DocumentRendererProps["renderers"] = {
   },
 };
 
-function Faq({ title, description, faqData }: Props) {
+function Faq({ faqData }: Props) {
   const { t } = useTranslation();
 
   return (
