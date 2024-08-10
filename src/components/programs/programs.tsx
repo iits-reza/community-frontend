@@ -1,30 +1,13 @@
 import { Button } from "../button";
-import Event1 from "../../images/event1.svg";
-import Event2 from "../../images/event2.svg";
-import Event3 from "../../images/event3.svg";
 import { useTranslation } from "react-i18next";
 import { EventCard } from "../eventCard/eventCard";
 import { useNavigate } from "react-router-dom";
 
-const events = [
-  {
-    title: "Your Generosity Saves Lives",
-    time_date: "2024/08/08 02:20pm",
-    image: Event1,
-  },
-  {
-    title: "A Bright Future for Indonesian Children",
-    time_date: "2024/08/08 02:20pm",
-    image: Event2,
-  },
-  {
-    title: "Care for victims affected by floods",
-    time_date: "2024/08/08 02:20pm",
-    image: Event3,
-  },
-];
+interface Props {
+  eventsData: object[];
+}
 
-const Programs = () => {
+const Programs = ({ eventsData = [] }: Props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -37,7 +20,17 @@ const Programs = () => {
         </Button>
       </div>
       <div className="grid grid-cols-3 place-items-center  gap-[30px]">
-        {events.map((event) => (
+        {eventsData.map((event) => (
+          <EventCard
+            onClick={() => console.log("hello")}
+            className="w-[400px] h-[400px]"
+            buttonText={t("programs.viewmore_button")}
+            date={event.dateAndTime}
+            imageSrc={event.image}
+            title={event.title}
+          />
+        ))}
+        {/* {events.map((event) => (
           <EventCard
             onClick={() => console.log("hello")}
             className="w-[400px] h-[400px]"
@@ -46,7 +39,7 @@ const Programs = () => {
             imageSrc={event.image}
             title={event.title}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );

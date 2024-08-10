@@ -4,7 +4,7 @@ import Programs from "../../components/programs/programs";
 // import Donations from "../../components/donations/donations";
 import Faq from "../../components/faq/faq";
 import HomeComponent from "../../components/home/home";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MembershipModal } from "../../components/membershipModal/membershipModal";
 import { gql, useQuery } from "@apollo/client";
 
@@ -19,14 +19,35 @@ const GET_FAQS = gql`
   }
 `;
 
+const GET_LASTEVENTS = gql`
+  query Events {
+    events(orderBy: { createdAt: desc }, take: 3) {
+      title
+      content {
+        document
+      }
+      dateAndTime
+    }
+  }
+`;
+
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { error, loading, data } = useQuery(GET_FAQS);
+  // const { error, loading, data } = useQuery(GET_FAQS);
+  const {
+    error: faqError,
+    loading: faqLoading,
+    data: faqData,
+  } = useQuery(GET_FAQS);
+  const {
+    error: lastEventError,
+    loading: lastEventLoading,
+    data: lastEventData,
+  } = useQuery(GET_LASTEVENTS);
+  useEffect(() => {});
 
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
-
-  const faqData = data.faqs;
+  const faqsInfo = faqData?.faqs;
+  const lastThreeEventData = lastEventData?.events;
 
   return (
     <div className="">
@@ -41,10 +62,12 @@ export const Home = () => {
       <HomeComponent setIsModalOpen={setIsModalOpen} />
       <About />
       {/* <Donations /> */}
-      <Programs />
-      {/* {faqData.map((faq) => ( */}
-      <Faq faqData={faqData} />
-      {/* ))} */}
+      {faqLoading && "Loading..."}
+      {faqError && `Error! ${faqError.message}`}
+      <Programs eventsData={lastThreeEventData} />
+      {lastEventLoading && "Loading..."}
+      {lastEventError && `Error! ${lastEventError.message}`}
+      <Faq faqData={faqsInfo} />
     </div>
   );
 };

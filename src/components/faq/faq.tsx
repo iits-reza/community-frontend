@@ -25,7 +25,7 @@ const renderers: DocumentRendererProps["renderers"] = {
   },
 };
 
-function Faq({ faqData }: Props) {
+function Faq({ faqData = [] }: Props) {
   const { t } = useTranslation();
 
   return (
