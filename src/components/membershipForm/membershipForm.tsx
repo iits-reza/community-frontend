@@ -1,10 +1,28 @@
 import React, { useState } from "react";
+import { gql, useMutation } from "@apollo/client";
 interface FormData {
   name: string;
   last: string;
   email: string;
   phone: string;
 }
+
+const CREATE_MEMEBER_MUTATION = gql`
+  mutation createMember(
+    $name: string!
+    $last: string!
+    $email: string!
+    $phone: string!
+  ) {
+    createMember(data: { name: name, last: last, email: email, phone: phone }) {
+      id
+      name
+      last
+      email
+      phone
+    }
+  }
+`;
 const MembershipForm: React.FC = () => {
   const initialFormData: FormData = {
     name: "",
@@ -12,6 +30,9 @@ const MembershipForm: React.FC = () => {
     email: "",
     phone: "",
   };
+  const [createMember, { data, loading, error }] = useMutation(
+    CREATE_MEMEBER_MUTATION
+  );
 
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,14 +43,18 @@ const MembershipForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
-    // Perform further actions, such as sending data to a server
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      await createMember({ variables: { name, last, email, phone } });
+    } catch (err) {
+      console.log(err);
+    }
   };
-  const hanldeReset = () => {
+  const handleReset = () => {
     setFormData(initialFormData);
   };
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
       <div className="flex flex-row gap-4 w-full items-center">
@@ -89,6 +114,7 @@ const MembershipForm: React.FC = () => {
       <div className="flex flex-row gap-3 w-full">
         <button
           type="submit"
+          onClick={handleSubmit}
           className="border-2 p-2 w-1/2 hover:bg-emerald-400 hover:text-white"
         >
           Submit
@@ -96,7 +122,7 @@ const MembershipForm: React.FC = () => {
         <button
           type="reset"
           className="border-2 p-2 w-1/2 hover:bg-rose-400 hover:text-white"
-          onClick={hanldeReset}
+          onClick={handleReset}
         >
           Reset all
         </button>
