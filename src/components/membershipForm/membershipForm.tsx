@@ -36,14 +36,8 @@ const MembershipForm: React.FC = () => {
   const [createMember, { data = formData, loading, error }] = useMutation(
     CREATE_MEMEBER_MUTATION
   );
-  const [formMessage, setFormMessage] = useState(false);
-  {
-    error && <p>something went wrong</p>;
-  }
-  {
-    loading && <p>loading</p>;
-  }
-
+  const [formMessage, setFormMessage] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -54,18 +48,38 @@ const MembershipForm: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setEmailError(null); // Clear previous error
+    setFormMessage(null); // Clear any previous form message
     try {
-      await createMember({ variables: { ...formData } })
-        .then((data) => {
-          console.log(data);
-        })
-        .then((res) => {
-          setFormData(initialFormData);
-          setFormMessage(true);
-          console.log(res);
-        });
-    } catch (err) {
-      console.log(err);
+      await createMember({ variables: { ...formData } });
+      console.log("Mutation successful:", data);
+      setFormData(initialFormData);
+      setFormMessage(
+        "Form submitted successfully! You may close the modal now."
+      );
+    } catch (err: any) {
+      console.error("Error submitting the form:", err);
+      // Check for unique constraint error
+      if (
+        err.graphQLErrors &&
+        err.graphQLErrors[0] &&
+        err.graphQLErrors[0].extensions &&
+        err.graphQLErrors[0].extensions.code === "P2002"
+      ) {
+        const field = err.graphQLErrors[0].extensions.meta.target;
+        // const field = err.graphQLErrors[0].extensions.meta.target;
+        if (field.includes("email")) {
+          setEmailError(
+            "This email is already registered. Please use a different email."
+          );
+        } else {
+          setFormMessage(
+            `Error: The ${field} is already in use. Please use a different ${field}.`
+          );
+        }
+      } else {
+        setFormMessage("Something went wrong. Please try again.");
+      }
     }
   };
   const handleReset = () => {
@@ -74,7 +88,17 @@ const MembershipForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
-      {formMessage === false ? (
+      {loading && <p>Loading...</p>}
+      {/* {error && <p style={{ color: "red" }}>Error: {error.message}</p>} */}
+      {formMessage ? (
+        <p className="p-5">
+          {formMessage.includes("successfully") && (
+            <span className="rounded-full text-emerald-400 ml-2 h-[20px] w-[20px] text-[25px]">
+              ✓
+            </span>
+          )}
+        </p>
+      ) : (
         <>
           <div className="flex flex-row gap-4 w-full items-center">
             <label className="flex flex-col w-full">
@@ -116,6 +140,7 @@ const MembershipForm: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
             />
+            {emailError && <p style={{ color: "red" }}>{emailError}</p>}
           </label>
           <label className="flex flex-col w-full">
             <span className=" text-rose-700 mb-2">
@@ -147,13 +172,6 @@ const MembershipForm: React.FC = () => {
             </button>
           </div>
         </>
-      ) : (
-        <p className="p-5">
-          form submited successfully! You may close the modal now.
-          <span className=" rounded-full text-emerald-400  ml-2 h-[20px] w-[20px] text-[25px]">
-            ✓
-          </span>
-        </p>
       )}
     </form>
   );
