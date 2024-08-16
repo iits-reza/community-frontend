@@ -53,9 +53,9 @@ export const Home = () => {
     <div className="">
       {isModalOpen && (
         <MembershipModal
-          description="No descripotion"
+          description="here you can register your info to your community "
           onCloseModal={setIsModalOpen}
-          title="Title"
+          title="Membership registration"
           // onClose={}
         />
       )}
