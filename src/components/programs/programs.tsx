@@ -26,8 +26,9 @@ const Programs = ({ eventsData = [] }: Props) => {
             className="w-[400px] h-[400px]"
             buttonText={t("programs.viewmore_button")}
             date={event.dateAndTime}
-            imageSrc={event.image}
+            imageSrc={event.image?.url}
             title={event.title}
+            author={event.author?.name}
           />
         ))}
         {/* {events.map((event) => (

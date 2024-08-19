@@ -23,10 +23,18 @@ const GET_LASTEVENTS = gql`
   query Events {
     events(orderBy: { createdAt: desc }, take: 3) {
       title
+      dateAndTime
       content {
         document
       }
-      dateAndTime
+      image {
+        url
+        height
+        width
+      }
+      author {
+        name
+      }
     }
   }
 `;

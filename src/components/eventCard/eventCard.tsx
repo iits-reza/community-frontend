@@ -2,6 +2,7 @@ import { Button } from "../button";
 
 type Props = {
   imageSrc: string;
+  author: string;
   title: string;
   date: string;
   buttonText: string;
@@ -15,11 +16,12 @@ export const EventCard = ({
   date,
   title,
   className,
+  author,
   onClick,
 }: Props) => {
   return (
     <div
-      className={`flex flex-col gap-4 p-[10px] ${className}`}
+      className={`flex flex-col gap-4 p-[10px] ${className} cursor-pointer`}
       onClick={onClick}
     >
       <img
@@ -28,6 +30,7 @@ export const EventCard = ({
         className="w-full h-full overflow-hidden"
       />
       <p>{title}</p>
+      <p>Posted by: {author}</p>
       <span>{date}</span>
       <Button variant="secondary">{buttonText}</Button>
     </div>
