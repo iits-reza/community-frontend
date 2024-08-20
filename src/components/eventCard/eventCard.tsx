@@ -19,6 +19,19 @@ export const EventCard = ({
   author,
   onClick,
 }: Props) => {
+  const formatDate = (date: string) => {
+    // new Date(date, "MM/dd/yyy - hh:mm PM");
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+    return new Date(date).toLocaleString("en-US", options);
+  };
+
   return (
     <div
       className={`flex flex-col gap-4 p-[10px] ${className} cursor-pointer`}
@@ -31,7 +44,7 @@ export const EventCard = ({
       />
       <p>{title}</p>
       <p>Posted by: {author}</p>
-      <span>{date}</span>
+      <span>{formatDate(date)}</span>
       <Button variant="secondary">{buttonText}</Button>
     </div>
   );
