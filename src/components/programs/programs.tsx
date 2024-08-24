@@ -25,10 +25,11 @@ const Programs = ({ eventsData = [] }: Props) => {
             onClick={() => console.log("hello")}
             className="w-[400px] h-[400px]"
             buttonText={t("programs.viewmore_button")}
-            date={event.dateAndTime}
+            eventDate={event?.eventDate}
             imageSrc={event.image?.url}
             title={event.title}
             author={event.author?.name}
+            eventTime={event.eventTime}
           />
         ))}
         {/* {events.map((event) => (

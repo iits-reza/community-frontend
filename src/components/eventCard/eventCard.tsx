@@ -4,19 +4,21 @@ type Props = {
   imageSrc: string;
   author: string;
   title: string;
-  date: string;
+  eventDate: string;
   buttonText: string;
   className: string;
   onClick: () => void;
+  eventTime: string;
 };
 
 export const EventCard = ({
   imageSrc,
   buttonText,
-  date,
+  eventDate,
   title,
   className,
   author,
+  eventTime,
   onClick,
 }: Props) => {
   const formatDate = (date: string) => {
@@ -42,9 +44,11 @@ export const EventCard = ({
         alt={title}
         className="w-full h-full overflow-hidden"
       />
+      <span>{eventTime}</span>
       <p>{title}</p>
       <p>Posted by: {author}</p>
-      <span>{formatDate(date)}</span>
+      <span>{eventDate}</span>
+      <span>{formatDate(eventDate)}</span>
       <Button variant="secondary">{buttonText}</Button>
     </div>
   );
