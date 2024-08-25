@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../../components/header/header";
 import { Button } from "../../components/button";
 import { useNavigate } from "react-router-dom";
@@ -41,14 +41,23 @@ const Events: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { loading, error, data } = useQuery(GET_EVENTS);
 
+  // Load the grid/list state from localStorage
+  useEffect(() => {
+    const savedViewMode = localStorage.getItem("viewMode");
+    if (savedViewMode) setIsGrid(savedViewMode === "grid");
+  });
+
   // const eventData = data.events;
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
-  const handleGrid = (arg: string) => {
-    if (arg == "noGrid") setIsGrid(false);
-    else if (arg == "grid") setIsGrid(true);
-    console.log(isGrid);
+  const handleGrid = (gridType: string) => {
+    const isGridView = gridType === "grid";
+    setIsGrid(isGridView);
+    localStorage.setItem("viewMode", isGridView ? "grid" : "list");
+    // if (arg == "noGrid") setIsGrid(false);
+    // else if (arg == "grid") setIsGrid(true);
+    // console.log(isGrid);
   };
 
   const handleOpenModal = () => {

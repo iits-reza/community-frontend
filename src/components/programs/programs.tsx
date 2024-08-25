@@ -22,6 +22,7 @@ const Programs = ({ eventsData = [] }: Props) => {
       <div className="grid grid-cols-3 place-items-center  gap-[30px]">
         {eventsData.map((event) => (
           <EventCard
+            key={event.id}
             onClick={() => console.log("hello")}
             className="w-[400px] h-[400px]"
             buttonText={t("programs.viewmore_button")}

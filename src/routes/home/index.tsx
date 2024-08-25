@@ -22,6 +22,7 @@ const GET_FAQS = gql`
 const GET_LASTEVENTS = gql`
   query Events {
     events(orderBy: { createdAt: desc }, take: 3) {
+      id
       title
       eventDate
       content {
