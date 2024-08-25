@@ -68,7 +68,9 @@ const Events: React.FC = () => {
       </Header>
       <div className="flex flex-row justify-between px-[80px]">
         <div>
-          <h1 className="text-[40px] font-title w-[600px]">Events&programs</h1>
+          <h1 className="text-[40px] font-title w-[600px]">
+            Events and programs
+          </h1>
           <p className="w-[600px] text[24px]">
             Here you can see all events and programs
           </p>
@@ -93,17 +95,19 @@ const Events: React.FC = () => {
           isGrid == true ? "grid-rows-5 grid-cols-4" : "grid-rows-5 grid-cols-2"
         }  gap-[30px] px-[80px] place-items-center`}
       >
-        {data.events.map((event) => (
+        {data.events.map((event: any) => (
           <>
-            <p>({event.title})</p>
+            {/* <p>({event.title})</p> */}
 
             <EventCard
+              author={event.author}
               onClick={handleOpenModal}
               className={`${
                 isGrid == true ? "w-[400px] h-[400px]" : "w-[500px]"
               }`}
               buttonText={t("programs.viewmore_button")}
-              date={event.time_date}
+              eventDate={event.eventDate}
+              eventTime={event.eventTime}
               imageSrc={event.image}
               title={event.title}
             />
