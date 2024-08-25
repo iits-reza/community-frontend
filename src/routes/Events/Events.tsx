@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGrip, faHome, faImage } from "@fortawesome/free-solid-svg-icons";
 
-// import Event1 from "../../images/event1.svg"; // event image examoke
 import { useTranslation } from "react-i18next";
 import { ProgramModal } from "../../components/programModal/programModal";
-// import { GET_EVENTS } from "../../graphql/events";
 import { gql, useQuery } from "@apollo/client";
 import { EventCard } from "../../components/eventCard/eventCard";
 const GET_EVENTS = gql`
@@ -32,8 +30,8 @@ const GET_EVENTS = gql`
     }
   }
 `;
-// This is a route for events
 
+// This is a route for events
 const Events: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -55,9 +53,6 @@ const Events: React.FC = () => {
     const isGridView = gridType === "grid";
     setIsGrid(isGridView);
     localStorage.setItem("viewMode", isGridView ? "grid" : "list");
-    // if (arg == "noGrid") setIsGrid(false);
-    // else if (arg == "grid") setIsGrid(true);
-    // console.log(isGrid);
   };
 
   const handleOpenModal = () => {
