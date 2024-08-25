@@ -14,6 +14,7 @@ import { EventCard } from "../../components/eventCard/eventCard";
 const GET_EVENTS = gql`
   query EventsQuery {
     events {
+      id
       title
       eventDate
       content {
@@ -101,26 +102,21 @@ const Events: React.FC = () => {
       </div>
       <div
         className={`grid ${
-          isGrid == true ? "grid-rows-5 grid-cols-4" : "grid-rows-5 grid-cols-2"
-        }  gap-[30px] px-[80px] place-items-center`}
+          isGrid ? "grid-cols-4" : "grid-cols-2"
+        } gap-[30px] px-[80px] place-items-center`}
       >
         {data.events.map((event) => (
-          <>
-            {/* <p>({event.title})</p> */}
-
-            <EventCard
-              author={event.author}
-              onClick={handleOpenModal}
-              className={`${
-                isGrid == true ? "w-[400px] h-[400px]" : "w-[500px]"
-              }`}
-              buttonText={t("programs.viewmore_button")}
-              eventDate={event.eventDate}
-              eventTime={event.eventTime}
-              imageSrc={event.image.url}
-              title={event.title}
-            />
-          </>
+          <EventCard
+            key={event.id}
+            author={event.author}
+            onClick={handleOpenModal}
+            className={isGrid ? "w-[400px] h-[400px]" : "w-[500px]"}
+            buttonText={t("programs.viewmore_button")}
+            eventDate={event.eventDate}
+            eventTime={event.eventTime}
+            imageSrc={event.image.url}
+            title={event.title}
+          />
         ))}
       </div>
     </div>
