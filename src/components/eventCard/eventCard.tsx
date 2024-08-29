@@ -27,9 +27,6 @@ export const EventCard = ({
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
     };
     return new Date(date).toLocaleString("en-US", options);
   };
@@ -47,7 +44,7 @@ export const EventCard = ({
       <span>{eventTime}</span>
       <p>{title}</p>
       <p>Posted by: {author}</p>
-      <span>{eventDate}</span>
+      {/* <span>{eventDate}</span> */}
       <span>{formatDate(eventDate)}</span>
       <Button variant="secondary">{buttonText}</Button>
     </div>

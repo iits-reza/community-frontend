@@ -43,7 +43,7 @@ const Events: React.FC = () => {
   useEffect(() => {
     const savedViewMode = localStorage.getItem("viewMode");
     if (savedViewMode) setIsGrid(savedViewMode === "grid");
-  });
+  }, []);
 
   // const eventData = data.events;
   if (loading) return "Loading...";
@@ -105,16 +105,18 @@ const Events: React.FC = () => {
         </div>
       </div>
       <div
-        className={`grid ${
-          isGrid ? "grid-cols-4" : "grid-cols-2"
-        } gap-[30px] px-[80px] place-items-center`}
+        className={`grid gap-[30px] ${
+          isGrid ? "grid-cols-4 " : "grid-cols-2 "
+        }  px-[80px] `}
       >
         {data.events.map((event) => (
           <EventCard
             key={event.id}
             author={event.author}
             onClick={handleOpenModal}
-            className={isGrid ? "w-[400px] h-[400px]" : "w-[500px]"}
+            className={`${
+              isGrid ? "w-[400px] h-[400px] m-[15px]" : "w-[500px] m-[15px]"
+            }`}
             buttonText={t("programs.viewmore_button")}
             eventDate={event.eventDate}
             eventTime={event.eventTime}
