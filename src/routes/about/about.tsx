@@ -58,7 +58,7 @@ const AboutCommunity: React.FC = () => {
           Go back to Home
         </Button>
       </Header>
-      <div className="flex flex-col pt-[160px] p-[80px] gap-[50px]">
+      <div className="flex flex-col pt-[160px] p-[80px] px-[300px] gap-[50px]">
         <h1 className="font-primary text-section-title">{data.about.title}</h1>
         <DocumentRenderer
           document={data.about.content.document}
