@@ -33,16 +33,6 @@ const Programs = ({ eventsData = [] }: Props) => {
             eventTime={event.eventTime}
           />
         ))}
-        {/* {events.map((event) => (
-          <EventCard
-            onClick={() => console.log("hello")}
-            className="w-[400px] h-[400px]"
-            buttonText={t("programs.viewmore_button")}
-            date={event.time_date}
-            imageSrc={event.image}
-            title={event.title}
-          />
-        ))} */}
       </div>
     </div>
   );
