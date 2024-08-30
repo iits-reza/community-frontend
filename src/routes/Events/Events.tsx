@@ -105,8 +105,8 @@ const Events: React.FC = () => {
         </div>
       </div>
       <div
-        className={`grid gap-[30px] ${
-          isGrid ? "grid-cols-4 " : "grid-cols-2 "
+        className={`grid gap-[30px] items-center ${
+          isGrid ? "grid-cols-4  " : "grid-cols-2 "
         }  px-[80px] `}
       >
         {data.events.map((event) => (
@@ -114,8 +114,8 @@ const Events: React.FC = () => {
             key={event.id}
             author={event.author}
             onClick={handleOpenModal}
-            className={`${
-              isGrid ? "w-[400px] px-[20px] h-[400px] " : "w-[500px] m-[15px]"
+            className={` border-lime-400 border-2  p-[20px] rounded-lg ${
+              isGrid ? "w-[300px]  h-[400px] " : "w-[500px] "
             }`}
             buttonText={t("programs.viewmore_button")}
             eventDate={event.eventDate}

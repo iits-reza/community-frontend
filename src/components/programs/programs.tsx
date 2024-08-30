@@ -24,7 +24,7 @@ const Programs = ({ eventsData = [] }: Props) => {
           <EventCard
             key={event.id}
             onClick={() => console.log("hello")}
-            className="w-[400px] h-[400px]"
+            className="w-[400px] h-[400px] border-lime-400 border-2  p-[20px] rounded-lg "
             buttonText={t("programs.viewmore_button")}
             eventDate={event?.eventDate}
             imageSrc={event.image?.url}

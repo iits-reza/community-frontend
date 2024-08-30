@@ -33,7 +33,7 @@ export const EventCard = ({
 
   return (
     <div
-      className={`flex flex-col gap-4 p-[10px] ${className} cursor-pointer`}
+      className={`flex flex-col gap-4  cursor-pointer  ${className}`}
       onClick={onClick}
     >
       <img
@@ -44,7 +44,6 @@ export const EventCard = ({
       <span>{eventTime}</span>
       <p>{title}</p>
       <p>Posted by: {author}</p>
-      {/* <span>{eventDate}</span> */}
       <span>{formatDate(eventDate)}</span>
       <Button variant="secondary">{buttonText}</Button>
     </div>
