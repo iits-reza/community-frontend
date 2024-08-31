@@ -37,6 +37,7 @@ const Events: React.FC = () => {
   const navigate = useNavigate();
   const [isGrid, setIsGrid] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const { loading, error, data } = useQuery(GET_EVENTS);
 
   // Load the grid/list state from localStorage
@@ -55,19 +56,19 @@ const Events: React.FC = () => {
     localStorage.setItem("viewMode", isGridView ? "grid" : "list");
   };
 
-  const handleOpenModal = () => {
-    console.log("open modal clicked");
+  const handleOpenModal = (event) => {
+    setSelectedEvent(event);
     setIsModalOpen(true);
   };
 
   return (
     <div className="flex flex-col pt-[190px] gap-[25px] justify-center">
-      {isModalOpen && (
+      {isModalOpen && selectedEvent && (
         <ProgramModal
-          imageSrc="https://www.econlib.org/wp-content/uploads/2018/02/Charity-scaled.jpeg"
-          title="Title"
-          description="Charity is that pure love which our Savior Jesus Christ has. He has commanded us to love one another as He loves us. The scriptures tell us that charity comes from a pure heart (see 1 Timothy 1:5). We have pure love when, from the heart, we show genuine concern and compassion for all our brothers and sisters."
-          timeData="Jul,24, 2024 - 12:30 PM"
+          imageSrc={selectedEvent.image.url}
+          title={selectedEvent.title}
+          description={selectedEvent.content.document}
+          timeData={`${selectedEvent.eventDate} - ${selectedEvent.eventTime}`}
           onCloseModal={() => setIsModalOpen(false)}
         />
       )}
@@ -113,7 +114,7 @@ const Events: React.FC = () => {
           <EventCard
             key={event.id}
             author={event.author}
-            onClick={handleOpenModal}
+            onClick={() => handleOpenModal(event)}
             className={` border-lime-400 border-2  p-[20px] rounded-lg ${
               isGrid ? "w-[300px]  h-[400px] " : "w-[500px] "
             }`}

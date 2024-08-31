@@ -46,16 +46,6 @@ function Faq({ faqData = [] }: Props) {
           }
         />
       ))}
-      {/* <Accordion
-        title={title}
-        description={
-          <DocumentRenderer
-            document={description || []}
-            renderers={renderers}
-          />
-        }
-      /> */}
-      {/* ))} */}
     </div>
   );
 }
