@@ -19,8 +19,8 @@ const renderers: DocumentRendererProps["renderers"] = {
     },
   },
   block: {
-    paragraph: ({ children, textAlign }) => {
-      return <p style={{ textAlign }}>{children}</p>;
+    paragraph: ({ children }) => {
+      return <p style={{ whiteSpace: "pre-line" }}>{children}</p>;
     },
   },
 };

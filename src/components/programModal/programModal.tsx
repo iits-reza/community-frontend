@@ -1,12 +1,10 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import {
-  Description,
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
-import { DocumentRenderer } from "@keystone-6/document-renderer";
+  DocumentRenderer,
+  DocumentRendererProps,
+} from "@keystone-6/document-renderer";
 
 type Props = {
   imageSrc: string;
@@ -30,6 +28,7 @@ export const ProgramModal = ({
         return <strong>{children}</strong>;
       },
     },
+
     block: {
       paragraph: ({ children, textAlign }) => {
         return <p style={{ textAlign }}>{children}</p>;
@@ -38,7 +37,6 @@ export const ProgramModal = ({
   };
   return (
     <>
-      {/* <button onClick={() => setIsOpen(true)}>Open dialog</button> */}
       <Dialog
         open={true}
         onClose={() => console.log("closed")}
@@ -59,7 +57,7 @@ export const ProgramModal = ({
             <div className="flex gap-4">
               <button
                 onClick={onCloseModal}
-                className="bg-red p-2 rounded-md text-white"
+                className="bg-rose-500 p-2 rounded-md text-white"
               >
                 Close Dialogue
               </button>
