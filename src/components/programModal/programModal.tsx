@@ -45,7 +45,7 @@ export const ProgramModal = ({
         className="relative z-50 "
       >
         <div className="fixed inset-0 flex  items-center justify-center p-4 ">
-          <DialogPanel className="relative space-y-4 bg-white p-12 w-[1000px] h-[700px] overflow-hidden overflow-scroll border-[2px] border-primary ">
+          <DialogPanel className="relative space-y-4 bg-white p-12 w-[1000px] h-[800px] overflow-hidden overflow-scroll border-[2px] border-primary ">
             <FontAwesomeIcon
               icon={faClose}
               onClick={onCloseModal}
@@ -57,7 +57,12 @@ export const ProgramModal = ({
             <DocumentRenderer document={description} renderers={renderers} />
             <p>{timeData}</p>
             <div className="flex gap-4">
-              <button onClick={onCloseModal}>Close</button>
+              <button
+                onClick={onCloseModal}
+                className="bg-red p-2 rounded-md text-white"
+              >
+                Close Dialogue
+              </button>
             </div>
           </DialogPanel>
         </div>
