@@ -38,51 +38,86 @@ const MembershipForm: React.FC = () => {
     CREATE_MEMEBER_MUTATION
   );
 
+  const [errors, setErrors] = useState<{ [key: string]: string | null }>({});
+  // const [emailMessage, setEmailMessage] = useState<string | null>(null);
   const [formMessage, setFormMessage] = useState<string | null>(null);
-  const [emailMessage, setEmailMessage] = useState<string | null>(null);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+
+    // Clearing the error message for the field being edited
+    setErrors({ ...errors, [name]: null });
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setEmailMessage(null);
+    setFormMessage(null);
 
     try {
       await createMember({ variables: { ...formData } });
       console.log("Mutation successful:", data);
       setFormData(initialFormData);
-      setEmailMessage("");
+      // setEmailMessage("");
       setFormMessage(
         "Form submitted successfully, you may close dialogue now ✓"
       );
     } catch (err: any) {
-      // console.error("Error submitting the form:", err);
-      // Check for unique constraint error
-      if (err.message.includes("EMAIL_EXISTS")) {
-        setEmailMessage(
-          "Email is already in use. Please use a different email."
-        );
-        setFormMessage("");
-      } else {
-        setEmailMessage("An unexpected error occurred. Please try again.");
-        setFormMessage("");
+      // Process and display error messages
+      const fieldErrors: { [key: string]: string } = {};
+      if (!/^[a-zA-Z]+$/.test(formData.name)) {
+        fieldErrors.name = "First name must contain only letters.";
       }
-      // setEmailMessage(null);
+      if (!/^[a-zA-Z]+$/.test(formData.last)) {
+        fieldErrors.last = "Last name must contain only letters.";
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        fieldErrors.email = "Please enter a valid email.";
+      }
+      if (!/^[0-9]+$/.test(formData.phone)) {
+        fieldErrors.phone = "Please enter only numbers";
+      }
+
+      if (Object.keys(fieldErrors).length > 0) {
+        setErrors(fieldErrors);
+        return; // Stop form submission if there are front-end validation errors
+      }
+      if (err.graphQLErrors) {
+        err.graphQLErrors.forEach((error: any) => {
+          const message = error.message;
+          if (message.includes("EMAIL_EXISTS")) {
+            fieldErrors.email =
+              "Email is already in use. Please use a different email.";
+          } else if (message.includes("name must contain only letters")) {
+            fieldErrors.name = "First name must contain only letters.";
+          } else if (message.includes("last must contain only letters")) {
+            fieldErrors.last = "Last name must contain only letters.";
+          } else {
+            // Generic error message for other fields
+            fieldErrors.form =
+              "An unexpected error occurred. Please try again.";
+          }
+        });
+      } else {
+        fieldErrors.form = "An unexpected error occurred. Please try again.";
+      }
+
+      setErrors(fieldErrors);
     }
   };
   const handleReset = () => {
     setFormData(initialFormData);
+    setErrors({});
+    setFormMessage("");
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
       {loading && <p>Loading...</p>}
       {formMessage && <p className="text-emerald-500 p-2 ">{formMessage}</p>}
+      {errors.form && <p className="text-red-500 p-2">{errors.form}</p>}
 
       <div className="flex flex-row gap-4 w-full items-center">
         <label className="flex flex-col w-full">
@@ -97,6 +132,7 @@ const MembershipForm: React.FC = () => {
             value={formData.name}
             onChange={handleChange}
           />
+          {errors.name && <p className="text-rose-500">{errors.name}</p>}
         </label>
         <label className="flex flex-col w-full">
           <span className=" text-rose-700 mb-2">
@@ -110,6 +146,7 @@ const MembershipForm: React.FC = () => {
             value={formData.last}
             onChange={handleChange}
           />
+          {errors.last && <p className="text-rose-500">{errors.last}</p>}
         </label>
       </div>
       <label className="flex flex-col w-full">
@@ -124,7 +161,7 @@ const MembershipForm: React.FC = () => {
           value={formData.email}
           onChange={handleChange}
         />
-        {emailMessage && <p className="text-red p-2">{emailMessage}</p>}
+        {errors.email && <p className="text-rose-500">{errors.email}</p>}
       </label>
       <label className="flex flex-col w-full">
         <span className=" text-rose-700 mb-2">
@@ -138,6 +175,7 @@ const MembershipForm: React.FC = () => {
           value={formData.phone}
           onChange={handleChange}
         />
+        {errors.phone && <p className="text-rose-500">{errors.phone}</p>}
       </label>
       <div className="flex flex-row gap-3 w-full">
         <button
