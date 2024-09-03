@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
-import type { PropsWithChildren } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-  faCertificate,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
-
+import { useMediaQuery } from "react-responsive";
 import { useTranslation } from "react-i18next";
+
+import type { PropsWithChildren } from "react";
 import cookies from "js-cookie";
 
-import translateIcon from "../../images/language.svg";
 import communityLogo from "../../../public/vite.svg";
-import i18next from "i18next";
 import {
   Link as ScrollLink,
   Events,
@@ -36,10 +29,12 @@ const languages = [
 
 export const Header = ({ children }: PropsWithChildren) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const currentLanguageCode = cookies.get("i18next") || "en";
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [isVisible, setIsVisible] = useState(false);
+  const currentLanguageCode = cookies.get("i18next") || "en";
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
   const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Registering the 'begin' event and logging it to the console when triggered.
@@ -80,21 +75,11 @@ export const Header = ({ children }: PropsWithChildren) => {
   };
 
   return (
-    <header className="fixed top-0 z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
-      <ScrollLink
-        to="home"
-        spy={true}
-        smooth={true}
-        duration={500}
-        href="#home"
-      >
-        <h1 className="font-title font-extrabold text-xl">
-          <img src={communityLogo} width={70} alt="Logo" />
-        </h1>
-      </ScrollLink>
-      {children}
-      {/* <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
-        <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
+    <>
+      {isMobile ? (
+        <p>Mobile menu</p>
+      ) : (
+        <header className="fixed top-0 z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
           <ScrollLink
             to="home"
             spy={true}
@@ -102,134 +87,21 @@ export const Header = ({ children }: PropsWithChildren) => {
             duration={500}
             href="#home"
           >
-            <FontAwesomeIcon icon={faCertificate} />
-            <a>{t("header.home")}</a>
+            <h1 className="font-title font-extrabold text-xl">
+              <img src={communityLogo} width={70} alt="Logo" />
+            </h1>
           </ScrollLink>
-        </li>
-        <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <ScrollLink
-            to="about"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={590}
-            className="gap-3 flex items-center"
-            href="#about"
+          {children}
+          <Button
+            className={`fixed bottom-[25px] right-[50px] border-primary border-2 z-10 ${
+              !isVisible && "hidden"
+            }`}
+            onClick={scrollToTop}
           >
-            <FontAwesomeIcon icon={faCertificate} />
-            <a>{t("header.about_community")}</a>
-          </ScrollLink>
-        </li>
-        <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <ScrollLink
-            to="donations"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={590}
-            className="gap-3 flex items-center"
-            href="#donations"
-          >
-            <FontAwesomeIcon icon={faCertificate} />
-            <a>{t("header.donation")}</a>
-          </ScrollLink>
-        </li>
-        <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <ScrollLink
-            to="programs"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={590}
-            className="gap-3 flex items-center"
-            href="#programs"
-          >
-            <FontAwesomeIcon icon={faCertificate} />
-            <a>{t("header.programs_events")}</a>
-          </ScrollLink>
-        </li>
-        <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <ScrollLink
-            to="faq"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={490}
-            className="gap-3 flex items-center"
-            href="#faq"
-          >
-            <FontAwesomeIcon icon={faCertificate} />
-            <a>{t("header.faq")}</a>
-          </ScrollLink>
-        </li>
-        <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
-          <ScrollLink
-            to="footer"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={490}
-            className="gap-3 flex items-center"
-            href="#footer"
-          >
-            <FontAwesomeIcon icon={faCertificate} />
-            <a>{t("header.contact")}</a>
-          </ScrollLink>
-        </li>
-      </ul>
-      <div className="relative">
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="group flex flex-row items-center gap-x-2"
-        >
-          {}
-          <FontAwesomeIcon
-            icon={faAngleDown}
-            fontSize={15}
-            className={`hover:duration-100 duration-100 ${
-              isMenuOpen && "rotate-180"
-            } `}
-          />
-          <img
-            src={translateIcon}
-            width={30}
-            height={30}
-            alt="Lnaguage Icon"
-            className="rounded-md"
-          />
-        </button>
-        {isMenuOpen && (
-          <ul className="absolute w-[190px] h-auto py-[10px] right-0 flex flex-col items-center justify-center bg-white border-2 border-primary rounded-md">
-            <li className="w-full px-10 py-3 border-b-2">
-              {t("header.language")}
-            </li>
-            <hr />
-            {languages.map((lng) => (
-              <li
-                key={lng.code}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  i18next.changeLanguage(lng.code);
-                }}
-                className="hover:bg-primary w-full hover:text-white cursor-pointer px-10 py-3"
-              >
-                {lng.code === currentLanguageCode && (
-                  <FontAwesomeIcon icon={faCheck} className="mx-4" />
-                )}
-                {lng.name}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div> */}
-      <Button
-        className={`fixed bottom-[25px] right-[50px] border-primary border-2 z-10 ${
-          !isVisible && "hidden"
-        }`}
-        onClick={scrollToTop}
-      >
-        &uarr;
-      </Button>
-    </header>
+            &uarr;
+          </Button>
+        </header>
+      )}
+    </>
   );
 };
