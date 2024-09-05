@@ -73,10 +73,18 @@ export const Home = () => {
       <About />
       {/* <Donations /> */}
       {faqLoading && "Loading..."}
-      {faqError && `Error! ${faqError.message}`}
+      {faqError && (
+        <p className="text-rose-800 font-medium text-lg p-5 text-center  bg-orange-200">
+          Error loading! Server error please try again
+        </p>
+      )}
       <Programs eventsData={lastThreeEventData} />
       {lastEventLoading && "Loading..."}
-      {lastEventError && `Error! ${lastEventError.message}`}
+      {lastEventError && (
+        <p className="text-rose-800 font-medium text-lg p-5 text-center  bg-orange-200">
+          Server error please try again
+        </p>
+      )}
       <Faq faqData={faqsInfo} />
     </div>
   );

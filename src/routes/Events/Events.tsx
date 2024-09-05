@@ -32,7 +32,7 @@ const GET_EVENTS = gql`
 `;
 
 // This is a route for events
-const Events: React.FC = () => {
+const Events: React.FC = ({ children }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isGrid, setIsGrid] = useState(true);
@@ -48,7 +48,18 @@ const Events: React.FC = () => {
 
   // const eventData = data.events;
   if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
+  if (error)
+    return (
+      <p className="text-rose-800 font-medium text-lg p-5 text-center  bg-orange-200">
+        Server error please try again
+        <Button
+          onClick={() => navigate("/")}
+          className="flex gap-4 items-center rounded-3xl"
+        >
+          ← Go to home
+        </Button>
+      </p>
+    );
 
   const handleGrid = (gridType: string) => {
     const isGridView = gridType === "grid";
@@ -62,7 +73,7 @@ const Events: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col pt-[190px] gap-[25px] justify-center">
+    <div className="flex flex-col py-[190px] gap-[25px] justify-center">
       {isModalOpen && selectedEvent && (
         <ProgramModal
           imageSrc={selectedEvent.image.url}
@@ -72,15 +83,7 @@ const Events: React.FC = () => {
           onCloseModal={() => setIsModalOpen(false)}
         />
       )}
-      <Header>
-        <Button
-          onClick={() => navigate("/")}
-          className="flex gap-4 items-center"
-        >
-          <FontAwesomeIcon icon={faHome} className="" />
-          Go back to Home
-        </Button>
-      </Header>
+      <Header>{children}</Header>
       <div className="flex flex-row justify-between px-[80px]">
         <div>
           <h1 className="text-[40px] font-title w-[600px]">
