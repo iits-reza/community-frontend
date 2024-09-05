@@ -3,7 +3,13 @@ import { Header } from "../../components/header/header";
 import { Button } from "../../components/button";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGrip, faHome, faImage } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCertificate,
+  faGrip,
+  faHome,
+  faImage,
+} from "@fortawesome/free-solid-svg-icons";
+import { Link as ScrollLink } from "react-scroll";
 
 import { useTranslation } from "react-i18next";
 import { ProgramModal } from "../../components/programModal/programModal";
@@ -83,7 +89,42 @@ const Events: React.FC = ({ children }) => {
           onCloseModal={() => setIsModalOpen(false)}
         />
       )}
-      <Header>{children}</Header>
+      <Header>
+        {" "}
+        <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
+          <li
+            onClick={() => navigate("/")}
+            className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md"
+          >
+            <ScrollLink
+              to="home"
+              spy={true}
+              smooth={true}
+              duration={500}
+              href="/"
+              onClick={() => navigate("/")}
+            >
+              <FontAwesomeIcon icon={faCertificate} className="mr-3" />
+              <a>{t("header.home")}</a>
+            </ScrollLink>
+          </li>
+
+          <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
+            <ScrollLink
+              to="footer"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={490}
+              className="gap-3 flex items-center"
+              href="#footer"
+            >
+              <FontAwesomeIcon icon={faCertificate} />
+              <a>{t("header.contact")}</a>
+            </ScrollLink>
+          </li>
+        </ul>
+      </Header>
       <div className="flex flex-row justify-between px-[80px]">
         <div>
           <h1 className="text-[40px] font-title w-[600px]">
