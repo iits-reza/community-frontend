@@ -1,12 +1,7 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import "./global/default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,12 +11,8 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 
 import LanguageDetector from "i18next-browser-languagedetector";
-import About from "./components/about/about.tsx";
-import Programs from "./components/programs/programs.tsx";
 import Footer from "./components/footer/footer.tsx";
-import Faq from "./components/faq/faq.tsx";
 import AboutCommunity from "./routes/about/about.tsx";
-// import Home from "./routes/home/home";
 import { Home } from "./routes/home";
 import EventsPrograms from "./routes/Events/Events.tsx";
 
@@ -65,14 +56,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
       <ApolloProvider client={client}>
         <Router>
-          {/* <Header /> */}
-          {/* <Outlet /> */}
           <Routes>
             <Route index path="/" element={<Home />} />
-            {/* <Route path="/about" element={<About />} /> */}
-            <Route path="/programs" element={<Programs />} />
-            {/* <Route path="/donations" element={<Donations />} /> */}
-            <Route path="/faq" element={<Faq />} />
             <Route path="/about-community" element={<AboutCommunity />} />
             <Route path="/all-events" element={<EventsPrograms />} />
           </Routes>

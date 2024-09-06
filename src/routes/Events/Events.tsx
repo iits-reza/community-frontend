@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { ProgramModal } from "../../components/programModal/programModal";
 import { gql, useQuery } from "@apollo/client";
 import { EventCard } from "../../components/eventCard/eventCard";
+import { useMediaQuery } from "react-responsive";
 const GET_EVENTS = gql`
   query EventsQuery {
     events {
@@ -40,6 +41,7 @@ const GET_EVENTS = gql`
 // This is a route for events
 const Events: React.FC = ({ children }) => {
   const { t } = useTranslation();
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const navigate = useNavigate();
   const [isGrid, setIsGrid] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -90,8 +92,11 @@ const Events: React.FC = ({ children }) => {
         />
       )}
       <Header>
-        {" "}
-        <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
+        <ul
+          className={`flex flex  ${
+            isMobile ? "flex-col bg-white w-full" : "flex-row"
+          } justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full`}
+        >
           <li
             onClick={() => navigate("/")}
             className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md"

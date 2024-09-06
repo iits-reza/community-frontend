@@ -14,6 +14,7 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link as ScrollLink } from "react-scroll";
+import { useMediaQuery } from "react-responsive";
 
 type Props = {
   setIsModalOpen: (arg: boolean) => void;
@@ -32,6 +33,7 @@ const languages = [
   },
 ];
 const HomeComponent = ({ setIsModalOpen }: Props) => {
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
@@ -50,7 +52,11 @@ const HomeComponent = ({ setIsModalOpen }: Props) => {
       id="home"
     >
       <Header>
-        <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
+        <ul
+          className={`flex ${
+            isMobile ? "flex-col bg-white w-full" : "flex-row"
+          } justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full`}
+        >
           <li className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md">
             <ScrollLink
               to="home"
@@ -134,12 +140,11 @@ const HomeComponent = ({ setIsModalOpen }: Props) => {
             </ScrollLink>
           </li>
         </ul>
-        <div className="relative">
+        <div className="relative mt-2">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="group flex flex-row items-center gap-x-2"
           >
-            {}
             <FontAwesomeIcon
               icon={faAngleDown}
               fontSize={15}
@@ -180,7 +185,7 @@ const HomeComponent = ({ setIsModalOpen }: Props) => {
           )}
         </div>
       </Header>
-      <div className="flex flex-col gap-[25px]">
+      <div className="flex flex-col gap-[25px] mt-2">
         <h1 className="text-[40px] font-title w-[600px]">{t("home.title")}</h1>
         <p className="w-[600px] text[24px]">{t("home.description")}</p>
         <div className="flex gap-2">

@@ -12,6 +12,7 @@ import {
   DocumentRendererProps,
 } from "@keystone-6/document-renderer";
 import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "react-responsive";
 const GET_ABOUT = gql`
   query About($where: AboutWhereUniqueInput!) {
     about(where: $where) {
@@ -26,6 +27,8 @@ const GET_ABOUT = gql`
 const AboutCommunity: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { loading, error, data } = useQuery(GET_ABOUT, {
     variables: {
       where: { id: 1 },
@@ -62,7 +65,11 @@ const AboutCommunity: React.FC = () => {
   return (
     <>
       <Header>
-        <ul className="flex flex-row justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full">
+        <ul
+          className={`flex  ${
+            isMobile ? "flex-col bg-white w-full" : "flex-row"
+          } justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full`}
+        >
           <li
             onClick={() => navigate("/")}
             className="gap-3 flex items-center cursor-pointer  border-b-2 hover:bg-primary hover:text-white py-2 px-3 rounded-md"

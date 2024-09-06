@@ -13,6 +13,8 @@ import {
   animateScroll as scroll,
 } from "react-scroll";
 import { Button } from "../button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const languages = [
   {
@@ -34,7 +36,7 @@ export const Header = ({ children }: PropsWithChildren) => {
   const currentLanguageCode = cookies.get("i18next") || "en";
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Registering the 'begin' event and logging it to the console when triggered.
@@ -77,7 +79,18 @@ export const Header = ({ children }: PropsWithChildren) => {
   return (
     <>
       {isMobile ? (
-        <p>Mobile menu</p>
+        <nav className="fixed p-5 w-full top-0 right-0 z-10 bg-white shadow-lg">
+          <div className="flex flex-rpow justify-between">
+            <button
+              className="cursor-pointer hover:text-sky-500"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <FontAwesomeIcon icon={faBars} fontSize={23} />
+            </button>
+            <img src={communityLogo} width={40} />
+          </div>
+          {isMenuOpen && <div>{children}</div>}
+        </nav>
       ) : (
         <header className="fixed top-0 z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">
           <ScrollLink
