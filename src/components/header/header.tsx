@@ -14,7 +14,7 @@ import {
 } from "react-scroll";
 import { Button } from "../button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 
 const languages = [
   {
@@ -79,17 +79,25 @@ export const Header = ({ children }: PropsWithChildren) => {
   return (
     <>
       {isMobile ? (
-        <nav className="fixed p-5 w-full top-0 right-0 z-10 bg-white shadow-lg">
+        <nav className="fixed p-5 w-full top-0 right-0 left-0 z-10 bg-white shadow-lg">
           <div className="flex flex-rpow justify-between">
             <button
               className="cursor-pointer hover:text-sky-500"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <FontAwesomeIcon icon={faBars} fontSize={23} />
+              {isMenuOpen ? (
+                <FontAwesomeIcon
+                  icon={faClose}
+                  fontSize={23}
+                  className="hover:text-red"
+                />
+              ) : (
+                <FontAwesomeIcon icon={faBars} fontSize={23} />
+              )}
             </button>
             <img src={communityLogo} width={40} />
           </div>
-          {isMenuOpen && <div>{children}</div>}
+          {isMenuOpen && <div className="w-full">{children}</div>}
         </nav>
       ) : (
         <header className="fixed top-0 z-10 flex flex-row justify-evenly items-center w-full bg-[#FCFCF4] h-[75px] text-primary border-primary border-2">

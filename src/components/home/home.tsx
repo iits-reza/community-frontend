@@ -48,7 +48,9 @@ const HomeComponent = ({ setIsModalOpen }: Props) => {
   };
   return (
     <div
-      className="p-[80px] pt-[160px] flex flex-row gap-[80px] w-full justify-center"
+      className={`p-[80px] sm:px-[25px] pt-[160px] flex ${
+        isMobile ? "flex-col" : "flex-row"
+      } gap-[80px] w-full justify-center`}
       id="home"
     >
       <Header>
@@ -185,10 +187,14 @@ const HomeComponent = ({ setIsModalOpen }: Props) => {
           )}
         </div>
       </Header>
-      <div className="flex flex-col gap-[25px] mt-2">
-        <h1 className="text-[40px] font-title w-[600px]">{t("home.title")}</h1>
-        <p className="w-[600px] text[24px]">{t("home.description")}</p>
-        <div className="flex gap-2">
+      <div className="flex flex-col gap-[25px] mt-2 w-full">
+        <h1 className="text-[40px] font-title w-[600px] sm:w-full sm:text-[25px]">
+          {t("home.title")}
+        </h1>
+        <p className="w-[600px] text[24px] sm:text-[20px] sm:w-full">
+          {t("home.description")}
+        </p>
+        <div className="flex gap-2 sm:flex-col">
           <Button
             variant="primary"
             className="font-primary"
