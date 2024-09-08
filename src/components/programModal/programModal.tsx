@@ -42,13 +42,18 @@ export const ProgramModal = ({
         onClose={() => console.log("closed")}
         className="relative z-50 "
       >
-        <div className="fixed inset-0 flex  items-center justify-center p-4 ">
-          <DialogPanel className="relative space-y-4 bg-white p-12 w-[1000px] h-[800px] overflow-hidden overflow-scroll border-[2px] border-primary ">
+        {/* <div className="fixed inset-0 flex  items-center justify-center p-4 "> */}
+        <div
+          className="fixed inset-0 flex  items-center justify-center p-4 bg-black bg-opacity-20"
+          onClick={onCloseModal}
+        >
+          <DialogPanel className="relative space-y-4 bg-white p-12 h-4/5 lg:w-[1000px] lg:h-[800px] overflow-scroll border-[2px] border-primary ">
             <FontAwesomeIcon
               icon={faClose}
+              // onClick={onCloseModal}
               onClick={onCloseModal}
               size="xl"
-              className="absolute top-2 right-5 cursor-pointer hover:opacity-45"
+              className="absolute top-2 right-1 cursor-pointer hover:opacity-45"
             />
             <img src={imageSrc} className="w-1/2" />
             <DialogTitle className="font-bold">{title}</DialogTitle>

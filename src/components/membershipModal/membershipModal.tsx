@@ -46,8 +46,9 @@ export const MembershipModal = ({
     <>
       {/* <button onClick={() => setIsOpen(true)}>Open dialog</button> */}
       <Dialog
+        onClose={() => console.log()}
         open={true}
-        onClose={() => onCloseModal(false)}
+        onClick={() => onCloseModal(false)}
         className="relative z-50 "
       >
         <div className="fixed inset-0 flex  items-center justify-center p-4 bg-black bg-opacity-20">
