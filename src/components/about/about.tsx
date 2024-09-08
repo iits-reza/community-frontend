@@ -18,7 +18,7 @@ const About = () => {
 
   return (
     <div
-      className="w-full flex flex-row justify-center bg-[#F0F4e6] gap-[80px] py-[80px]"
+      className="w-full flex flex-col lg:flex-row justify-center bg-[#F0F4e6] gap-[80px] py-[80px] px-6"
       id="about"
     >
       <img
@@ -27,7 +27,9 @@ const About = () => {
         className="w-[600px] border-2 border-primary"
       />
       <div className="flex flex-col gap-[25px]">
-        <h1 className="text-[40px] font-title w-[600px]">{t("about.title")}</h1>
+        <h1 className="text-[25px] lg:text-[40px] font-title w-full lg:w-[600px]">
+          {t("about.title")}
+        </h1>
         {aboutList.map((_, index) => (
           <div className="flex flex-row items-center gap-2">
             <FontAwesomeIcon icon={faCircleCheck} />

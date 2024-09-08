@@ -51,7 +51,7 @@ export const MembershipModal = ({
         className="relative z-50 "
       >
         <div className="fixed inset-0 flex  items-center justify-center p-4 bg-black bg-opacity-20">
-          <DialogPanel className="relative space-y-4 bg-white p-12 border-[2px] border-primary w-[900px]">
+          <DialogPanel className="relative space-y-4 bg-white p-12 border-[2px] border-primary lg:w-[900px] w-full h-full lg:h-[600px]">
             <FontAwesomeIcon
               icon={faClose}
               onClick={() => onCloseModal(false)}

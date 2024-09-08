@@ -119,7 +119,7 @@ const MembershipForm: React.FC = () => {
       {formMessage && <p className="text-emerald-500 p-2 ">{formMessage}</p>}
       {errors.form && <p className="text-red-500 p-2">{errors.form}</p>}
 
-      <div className="flex flex-row gap-4 w-full items-center">
+      <div className="flex lg:flex-row gap-4 w-full items-center flex-col">
         <label className="flex flex-col w-full">
           <span className=" text-rose-700 mb-2">
             <b className="text-black">First name:</b> *
