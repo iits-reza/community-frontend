@@ -29,8 +29,8 @@ function Faq({ faqData = [] }: Props) {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col px-20" id="faq">
-      <h1 className="text-[40px] pb-[20px] text-center font-title">
+    <div className="flex flex-col px-5 lg:px-20" id="faq">
+      <h1 className="lg:text-[40px] text-[25px] pb-[20px] text-center font-title">
         {t("faq.title")}
       </h1>
       {/* {accordionData.map((accordion) => ( */}

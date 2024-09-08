@@ -18,8 +18,11 @@ function Accordion({ title, description }: Props) {
         }`}
       >
         <div className="flex items-center gap-4">
-          <FontAwesomeIcon icon={faCertificate} fontSize={32} />
-          <h2 className="text-[32px] text-title ">{title}</h2>
+          <FontAwesomeIcon
+            icon={faCertificate}
+            className="lg:text-[32px] text-[15px]"
+          />
+          <h2 className="text-[15px] lg:text-[32px] text-title ">{title}</h2>
         </div>
         <svg
           className="fill-primary shrink-0 ml-8"
@@ -54,7 +57,7 @@ function Accordion({ title, description }: Props) {
             : "opacity-0 grid-rows-[0fr]"
         }`}
       >
-        <div className="overflow-hidden text-[20px] p-[15px]">
+        <div className="overflow-hidden text-[17px] lg:text-[20px]  p-[15px]">
           {description}
         </div>
       </div>
