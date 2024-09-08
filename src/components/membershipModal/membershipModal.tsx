@@ -8,6 +8,7 @@ import {
 } from "@headlessui/react";
 import React, { useState } from "react";
 import MembershipForm from "../membershipForm/membershipForm";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   onCloseModal: (arg: boolean) => void;
@@ -27,6 +28,7 @@ export const MembershipModal = ({
   onCloseModal,
   title,
 }: Props) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -46,9 +48,8 @@ export const MembershipModal = ({
     <>
       {/* <button onClick={() => setIsOpen(true)}>Open dialog</button> */}
       <Dialog
-        onClose={() => console.log()}
+        onClose={() => onCloseModal(false)}
         open={true}
-        onClick={() => onCloseModal(false)}
         className="relative z-50 "
       >
         <div className="fixed inset-0 flex  items-center justify-center p-4 bg-black bg-opacity-20">
@@ -60,15 +61,17 @@ export const MembershipModal = ({
               className="absolute top-2 right-5 cursor-pointer hover:opacity-45"
             />
             <DialogTitle className="font-bold border-t pt-5">
-              {title}
+              {t("membership_modal.title")}
             </DialogTitle>
-            <Description className="border-t  pt-5">{description}</Description>
+            <Description className="border-t  pt-5">
+              {t("membership_modal.description")}
+            </Description>
             <div>
               <MembershipForm />
             </div>
             <div className="flex gap-4 border-t-2 mt-9 pt-4">
               <button onClick={() => onCloseModal(false)} className="">
-                Close dialog
+                {t("membership_modal.close_dialog_btn")}
               </button>
             </div>
           </DialogPanel>

@@ -38,5 +38,16 @@
   "faq": {
     "title": "FAQ"
   },
-  "contact": {}
+  "contact": {},
+  "membership_modal": {
+    "title": "Membership registration",
+    "description": "Here you can register your info to your community",
+    "first": "First name",
+    "last": "Last name",
+    "email": "Email",
+    "phone": "Phone number",
+    "reset_all_btn": "Reset all",
+    "submit_btn": "Submit",
+    "close_dialog_btn": "Close dialog"
+  }
 }

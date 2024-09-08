@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
+import { useTranslation } from "react-i18next";
 interface FormData {
   name: string;
   last: string;
@@ -37,6 +38,7 @@ const MembershipForm: React.FC = () => {
   const [createMember, { data = formData, loading, error }] = useMutation(
     CREATE_MEMEBER_MUTATION
   );
+  const { t } = useTranslation();
 
   const [errors, setErrors] = useState<{ [key: string]: string | null }>({});
   // const [emailMessage, setEmailMessage] = useState<string | null>(null);
@@ -122,7 +124,7 @@ const MembershipForm: React.FC = () => {
       <div className="flex lg:flex-row gap-4 w-full items-center flex-col">
         <label className="flex flex-col w-full">
           <span className=" text-rose-700 mb-2">
-            <b className="text-black">First name:</b> *
+            <b className="text-black">{t("membership_modal.first")}:</b> *
           </span>
           <input
             className="border-2 p-2"
@@ -136,7 +138,7 @@ const MembershipForm: React.FC = () => {
         </label>
         <label className="flex flex-col w-full">
           <span className=" text-rose-700 mb-2">
-            <b className="text-black">Last name:</b> *
+            <b className="text-black">{t("membership_modal.last")}:</b> *
           </span>
           <input
             className="border-2 p-2"
@@ -151,7 +153,7 @@ const MembershipForm: React.FC = () => {
       </div>
       <label className="flex flex-col w-full">
         <span className=" text-rose-700 mb-2">
-          <b className="text-black">Email:</b> *
+          <b className="text-black">{t("membership_modal.email")}:</b> *
         </span>
         <input
           className="border-2 p-2"
@@ -165,7 +167,7 @@ const MembershipForm: React.FC = () => {
       </label>
       <label className="flex flex-col w-full">
         <span className=" text-rose-700 mb-2">
-          <b className="text-black">Phone number:</b> *
+          <b className="text-black">{t("membership_modal.phone")}:</b> *
         </span>
         <input
           className="border-2 p-2"
@@ -183,14 +185,14 @@ const MembershipForm: React.FC = () => {
           onClick={handleSubmit}
           className="border-2 p-2 w-1/2 hover:bg-emerald-400 hover:text-white"
         >
-          Submit
+          {t("membership_modal.submit_btn")}
         </button>
         <button
           type="reset"
           className="border-2 p-2 w-1/2 hover:bg-rose-400 hover:text-white"
           onClick={handleReset}
         >
-          Reset all
+          {t("membership_modal.reset_all_btn")}
         </button>
       </div>
     </form>

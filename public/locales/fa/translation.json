@@ -38,5 +38,16 @@
   "faq": {
     "title": "سوالات متداول"
   },
-  "contact": {}
+  "contact": {},
+  "membership_modal": {
+    "title": "عضویت انجمن",
+    "description": "اینجا شما میتوانید برای عضویت در انجمن درخواست دهید",
+    "first": "نام",
+    "last": "تخلص",
+    "email": "ایمیل",
+    "phone": "تیلیفون نمبر",
+    "reset_all_btn": "پاک کردن فورم",
+    "submit_btn": "ارسال کردن",
+    "close_dialog_btn": "بستن فورم"
+  }
 }
