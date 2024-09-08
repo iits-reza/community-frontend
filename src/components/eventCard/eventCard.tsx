@@ -33,7 +33,7 @@ export const EventCard = ({
 
   return (
     <div
-      className={`flex flex-col gap-4  cursor-pointer  ${className}`}
+      className={`flex flex-col gap-4  cursor-pointer shadow-md hover:shadow-2xl rounded-xl p-5  border-stone-400 ${className}`}
       onClick={onClick}
     >
       <img

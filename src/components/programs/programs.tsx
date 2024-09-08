@@ -21,7 +21,7 @@ const Programs = ({ eventsData = [] }: Props) => {
   };
 
   return (
-    <div className="flex flex-col p-[80px] gap-[25px]" id="programs">
+    <div className="flex flex-col p-6 lg:p-[80px] gap-[25px]" id="programs">
       {isModalOpen && selectedEvent && (
         <ProgramModal
           imageSrc={selectedEvent.image.url}
@@ -31,18 +31,24 @@ const Programs = ({ eventsData = [] }: Props) => {
           onCloseModal={() => setIsModalOpen(false)}
         />
       )}
-      <div className="flex flex-row justify-between">
-        <h1 className="text-[40px] font-title">{t("programs.title")}</h1>
-        <Button variant="primary" onClick={() => navigate("/all-events")}>
+      <div className="flex flex-col lg:flex-row justify-between gap-y-3">
+        <h1 className="lg:text-[40px] text-[25px] font-title w-full text-center lg:text-left">
+          {t("programs.title")}
+        </h1>
+        <Button
+          variant="primary"
+          className="lg:w-[350px] w-full"
+          onClick={() => navigate("/all-events")}
+        >
           {t("programs.allevts_button")}
         </Button>
       </div>
-      <div className="grid grid-cols-3 place-items-center  gap-[30px]">
+      <div className="grid lg:grid-cols-3 place-items-center  gap-[30px]">
         {eventsData.map((event) => (
           <EventCard
             key={event.id}
             onClick={() => handleOpenModal(event)}
-            className="w-[400px] h-[400px] border-lime-400 border-2  p-[20px] rounded-lg "
+            className="w-[300px] h-[300px] lg:w-[360px] lg:h-[430px]"
             buttonText={t("programs.viewmore_button")}
             eventDate={event?.eventDate}
             imageSrc={event.image?.url}

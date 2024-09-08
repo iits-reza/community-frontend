@@ -164,9 +164,7 @@ const Events: React.FC = ({ children }) => {
             key={event.id}
             author={event.author}
             onClick={() => handleOpenModal(event)}
-            className={` border-lime-400 border-2  p-[20px] rounded-lg ${
-              isGrid ? "w-[300px]  h-[400px] " : "w-[500px] "
-            }`}
+            className={`${isGrid ? "w-[300px]  h-[400px] " : "w-[500px] "}`}
             buttonText={t("programs.viewmore_button")}
             eventDate={event.eventDate}
             eventTime={event.eventTime}
