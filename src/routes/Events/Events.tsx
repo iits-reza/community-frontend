@@ -130,16 +130,16 @@ const Events: React.FC = ({ children }) => {
           </li>
         </ul>
       </Header>
-      <div className="flex flex-row justify-between px-[80px]">
+      <div className="flex flex-row justify-between lg:px-[80px] px-6">
         <div>
-          <h1 className="text-[40px] font-title w-[600px]">
+          <h1 className="lg:text-[40px] text-[25px] font-title w-[600px]">
             Events and programs
           </h1>
-          <p className="w-[600px] text[24px]">
+          <p className="w-[600px] lg:text[24px]">
             Here you can see all events and programs
           </p>
         </div>
-        <div>
+        {/* <div>
           <Button
             variant={`${isGrid && "selected"}`}
             onClick={() => handleGrid("grid")}
@@ -152,9 +152,9 @@ const Events: React.FC = ({ children }) => {
           >
             <FontAwesomeIcon icon={faImage} />
           </Button>
-        </div>
+        </div> */}
       </div>
-      <div
+      {/* <div
         className={`grid gap-[30px] items-center ${
           isGrid ? "grid-cols-4  " : "grid-cols-2 "
         }  px-[80px] `}
@@ -165,6 +165,21 @@ const Events: React.FC = ({ children }) => {
             author={event.author}
             onClick={() => handleOpenModal(event)}
             className={`${isGrid ? "w-[300px]  h-[400px] " : "w-[500px] "}`}
+            buttonText={t("programs.viewmore_button")}
+            eventDate={event.eventDate}
+            eventTime={event.eventTime}
+            imageSrc={event.image.url}
+            title={event.title}
+          />
+        ))}
+      </div> */}
+      <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-4 justify-items-center content-center">
+        {data.events.map((event) => (
+          <EventCard
+            key={event.id}
+            author={event.author}
+            onClick={() => handleOpenModal(event)}
+            className="w-[330px] h-[370px]"
             buttonText={t("programs.viewmore_button")}
             eventDate={event.eventDate}
             eventTime={event.eventTime}
