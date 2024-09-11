@@ -38,7 +38,7 @@ const Programs = ({ eventsData = [] }: Props) => {
         <Button
           variant="primary"
           className="lg:w-[350px] w-full"
-          onClick={() => navigate("/all-events")}
+          onClick={() => navigate("/events")}
         >
           {t("programs.allevts_button")}
         </Button>

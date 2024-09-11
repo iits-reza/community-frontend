@@ -38,8 +38,8 @@ const GET_EVENTS = gql`
   }
 `;
 
-// This is a route for events
-const Events: React.FC = ({ children }) => {
+// This is a route for all events
+const Events: React.FC = () => {
   const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const navigate = useNavigate();
@@ -69,15 +69,17 @@ const Events: React.FC = ({ children }) => {
       </p>
     );
 
-  const handleGrid = (gridType: string) => {
-    const isGridView = gridType === "grid";
-    setIsGrid(isGridView);
-    localStorage.setItem("viewMode", isGridView ? "grid" : "list");
-  };
+  // grid code for different post size saved for later
+  // const handleGrid = (gridType: string) => {
+  //   const isGridView = gridType === "grid";
+  //   setIsGrid(isGridView);
+  //   localStorage.setItem("viewMode", isGridView ? "grid" : "list");
+  // };
 
-  const handleOpenModal = (event) => {
+  const handleOpenModal = (event, eventId: string) => {
     setSelectedEvent(event);
-    setIsModalOpen(true);
+    // setIsModalOpen(true);
+    navigate(`/events/${eventId}`);
   };
 
   return (
@@ -178,7 +180,8 @@ const Events: React.FC = ({ children }) => {
           <EventCard
             key={event.id}
             author={event.author}
-            onClick={() => handleOpenModal(event)}
+            // onClick={() => handleOpenModal(event, eventId)}
+            onClick={() => navigate(`/events/${event.id}`)}
             className="w-[330px] h-[370px]"
             buttonText={t("programs.viewmore_button")}
             eventDate={event.eventDate}

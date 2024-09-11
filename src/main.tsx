@@ -1,6 +1,11 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useParams,
+} from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import "./global/default.css";
@@ -15,6 +20,7 @@ import Footer from "./components/footer/footer.tsx";
 import AboutCommunity from "./routes/about/about.tsx";
 import { Home } from "./routes/home";
 import EventsPrograms from "./routes/Events/Events.tsx";
+import EventsPage from "./routes/Events/EventPage.tsx";
 
 i18next
   .use(Backend)
@@ -59,7 +65,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Routes>
             <Route index path="/" element={<Home />} />
             <Route path="/about-community" element={<AboutCommunity />} />
-            <Route path="/all-events" element={<EventsPrograms />} />
+            <Route path="/events" element={<EventsPrograms />} />
+            <Route path="/events/:id" element={<EventsPage />} />
           </Routes>
           <Footer />
         </Router>
