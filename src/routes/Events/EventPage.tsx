@@ -1,60 +1,98 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import { useQuery, gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
+import {
+  DocumentRenderer,
+  DocumentRendererProps,
+} from "@keystone-6/document-renderer";
 
 // Define the GraphQL query
-const GET_EVENT_QUERY = gql`
-  query GetEvent($id: ID!) {
-    event(id: $id) {
+const GET_RECORD_BY_ID = gql`
+  query Event($where: EventWhereUniqueInput!) {
+    event(where: $where) {
       id
       title
-      date
-      time
+      eventDate
+      eventTime
+      createdAt
+      content {
+        document
+      }
+      author {
+        name
+        createdAt
+      }
       image {
         url
       }
-      description
     }
   }
 `;
 
+// interface eventData {
+//   id: string;
+//   title: string;
+//   eventDate: string;
+//   eventTime: string;
+//   createdAt: string;
+//   content: { document: string };
+//   author: { name: string; createdAt: string };
+//   image: { url: string };
+// }
+interface EventVars {
+  where: {
+    id: string; // Assuming you are fetching by ID
+  };
+}
+
 const EventsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  // Use the query hook to fetch event details
-  const { loading, error, data } = useQuery(GET_EVENT_QUERY, {
-    variables: { id },
+  const { loading, error, data } = useQuery<EventVars>(GET_RECORD_BY_ID, {
+    variables: { where: { id } }, // Pass the `id` as the `where` variable
   });
 
+  const renderer: DocumentRendererProps["renderers"] = {
+    inline: {
+      bold: ({ children }) => {
+        return <strong>{children}</strong>;
+      },
+    },
+    block: {
+      paragraph: ({ children, textAlign }) => {
+        return <p style={{ textAlign }}>{children}</p>;
+      },
+    },
+  };
+  // Handle loading, error, and data states
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+  const formatDate = (date: string) => {
+    // new Date(date, "MM/dd/yyy - hh:mm PM");
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(date).toLocaleString("en-US", options);
+  };
 
-  const event = data?.event;
-
+  const { event } = data!;
   return (
     <div>
-      {event ? (
-        <div>
-          <h1>{event.title}</h1>
-          <p>Date: {event.date}</p>
-          <p>Time: {event.time}</p>
-          <img src={event.image.url} alt={event.title} />
-          <p>{event.description}</p>
-          {/* Display other event details here */}
-        </div>
-      ) : (
-        <p>No event found.</p>
-      )}
+      Event ID: {id}
+      {event.title}
+      <img src={event.image.url} />
+      {event.date}
+      {event.eventTime}
+      {event.eventDate}
+      <DocumentRenderer
+        renderers={renderer}
+        document={event.content.document}
+      />
+      {<span>{formatDate(event.createdAt)}</span>}
     </div>
   );
 };
-
 export default EventsPage;
-
-// import { useParams } from "react-router-dom";
-
-// const EventsPage: React.FC = () => {
-//   const { id } = useParams<{ id: string }>();
-//   return <div>Event ID: {id}</div>;
-// };
-// export default EventsPage;
