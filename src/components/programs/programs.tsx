@@ -32,7 +32,7 @@ const Programs = ({ eventsData = [] }: Props) => {
         />
       )}
       <div className="flex flex-col lg:flex-row justify-between gap-y-3">
-        <h1 className="lg:text-[40px] text-[25px] font-title w-full text-center lg:text-left">
+        <h1 className="lg:text-[40px] text-[25px] font-title w-full text-center lg:text-left rtl:text-right">
           {t("programs.title")}
         </h1>
         <Button
