@@ -28,16 +28,6 @@ const GET_RECORD_BY_ID = gql`
   }
 `;
 
-// interface eventData {
-//   id: string;
-//   title: string;
-//   eventDate: string;
-//   eventTime: string;
-//   createdAt: string;
-//   content: { document: string };
-//   author: { name: string; createdAt: string };
-//   image: { url: string };
-// }
 interface EventVars {
   where: {
     id: string; // Assuming you are fetching by ID
@@ -80,18 +70,23 @@ const EventsPage: React.FC = () => {
 
   const { event } = data!;
   return (
-    <div>
-      Event ID: {id}
-      {event.title}
-      <img src={event.image.url} />
-      {event.date}
-      {event.eventTime}
-      {event.eventDate}
-      <DocumentRenderer
-        renderers={renderer}
-        document={event.content.document}
-      />
-      {<span>{formatDate(event.createdAt)}</span>}
+    <div className="flex flex-col  p-[200px] content-center w-full justify-center ">
+      {/* Event ID: {id} */}
+      <div className="flex flex-col w-[600px] gap-6">
+        <img src={event.image.url} className="w-full" />
+        <p>{event.title} </p>
+        <p>
+          When: {event.eventDate}- {event.eventTime}
+        </p>
+
+        <p>
+          <DocumentRenderer
+            renderers={renderer}
+            document={event.content.document}
+          />
+        </p>
+        {<span>Posted at: {formatDate(event.createdAt)}</span>}
+      </div>
     </div>
   );
 };
