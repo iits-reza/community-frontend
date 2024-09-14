@@ -70,22 +70,32 @@ const EventsPage: React.FC = () => {
 
   const { event } = data!;
   return (
-    <div className="flex flex-col  p-[200px] content-center w-full justify-center ">
-      {/* Event ID: {id} */}
-      <div className="flex flex-col w-[600px] gap-6">
-        <img src={event.image.url} className="w-full" />
-        <p>{event.title} </p>
-        <p>
-          When: {event.eventDate}- {event.eventTime}
-        </p>
+    <div className="flex flex-col  p-[200px] pt-[50px]  w-full  items-center content-center bg-postBackground">
+      <div className="bg-postForground border-2 p-10 rounded-xl">
+        {/* Event ID: {id} */}
+        <div className="flex flex-row justify-self-start gap-3 items-center">
+          <span className="text-[24px] text-white bg-cyan-400 w-14 h-14 p-6 flex items-center justify-center rounded-full">
+            {event?.author?.name && event?.author?.name.substring(0, 1)}
+          </span>
+          <div className="flex flex-col">
+            <span> {event.author.name}</span>
+            {<span>{formatDate(event.createdAt)}</span>}
+          </div>
+        </div>
+        <div className="flex flex-col w-[700px] gap-6 mt-5">
+          <img src={event.image.url} className="w-4/5" />
+          <p className="text-2xl font-semibold">{event.title} </p>
+          <p className="text-lg font-bold">
+            When: {event.eventDate} - {event.eventTime}
+          </p>
 
-        <p>
-          <DocumentRenderer
-            renderers={renderer}
-            document={event.content.document}
-          />
-        </p>
-        {<span>Posted at: {formatDate(event.createdAt)}</span>}
+          <p className="text-lg">
+            <DocumentRenderer
+              renderers={renderer}
+              document={event.content.document}
+            />
+          </p>
+        </div>
       </div>
     </div>
   );

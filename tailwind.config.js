@@ -6,6 +6,8 @@ export default {
     screens: { sm: "375px", md: "768px", lg: "1024px", xl: "1280px" },
     extend: {
       colors: {
+        postBackground: "rgb(249	249	249)",
+        postForground: "rgb(255	255	255	)",
         primary: "#123E23",
         accent: "#F6C825",
         green: "#4FA161",
