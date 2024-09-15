@@ -4,6 +4,9 @@ import {
   DocumentRenderer,
   DocumentRendererProps,
 } from "@keystone-6/document-renderer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShare, faShareNodes } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 // Define the GraphQL query
 const GET_RECORD_BY_ID = gql`
@@ -36,6 +39,7 @@ interface EventVars {
 
 const EventsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const [isCopied, setIsCopied] = useState(false);
 
   const { loading, error, data } = useQuery<EventVars>(GET_RECORD_BY_ID, {
     variables: { where: { id } }, // Pass the `id` as the `where` variable
@@ -67,20 +71,35 @@ const EventsPage: React.FC = () => {
     };
     return new Date(date).toLocaleString("en-US", options);
   };
-
+  const handleCopyToClipBoard = async () => {
+    await navigator.clipboard.writeText(location.href);
+    setIsCopied(true);
+  };
   const { event } = data!;
   return (
     <div className="flex flex-col  p-[200px] pt-[50px]  w-full  items-center content-center bg-postBackground">
       <div className="bg-postForground border-2 p-10 rounded-xl">
         {/* Event ID: {id} */}
-        <div className="flex flex-row justify-self-start gap-3 items-center">
-          <span className="text-[24px] text-white bg-cyan-400 w-14 h-14 p-6 flex items-center justify-center rounded-full">
-            {event?.author?.name && event?.author?.name.substring(0, 1)}
-          </span>
-          <div className="flex flex-col">
-            <span> {event.author.name}</span>
-            {<span>{formatDate(event.createdAt)}</span>}
+        <div className="flex flex-row justify-between content-center gap-3 items-center">
+          <div className="flex flex-row justify-between gap-3 items-center">
+            <span className="text-[24px] text-white bg-cyan-400 w-14 h-14 p-6 flex items-center justify-center rounded-full">
+              {event?.author?.name && event?.author?.name.substring(0, 1)}
+            </span>
+            <div className="flex flex-col">
+              <span> {event.author.name}</span>
+              {<span>{formatDate(event.createdAt)}</span>}
+            </div>
           </div>
+          {isCopied ? (
+            "Copied!"
+          ) : (
+            <FontAwesomeIcon
+              icon={faShareNodes}
+              fontSize={20}
+              className="cursor-pointer hover:text-teal-500"
+              onClick={handleCopyToClipBoard}
+            />
+          )}
         </div>
         <div className="flex flex-col w-[700px] gap-6 mt-5">
           <img src={event.image.url} className="w-4/5" />
