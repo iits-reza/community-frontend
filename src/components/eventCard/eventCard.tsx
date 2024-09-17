@@ -43,7 +43,7 @@ export const EventCard = ({
       />
       <span>{eventTime}</span>
       <p>{title}</p>
-      {!author === null && <p>Posted by: {author.name}</p>}
+      <p>{author && author.name ? author.name : "Unknown Author"}</p>
       {/* {console.log(author)} */}
       <span>{formatDate(eventDate)}</span>
       <Button variant="secondary">{buttonText}</Button>

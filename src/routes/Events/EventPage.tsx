@@ -22,7 +22,6 @@ const GET_RECORD_BY_ID = gql`
       }
       author {
         name
-        createdAt
       }
       image {
         url
