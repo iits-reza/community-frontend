@@ -95,7 +95,7 @@ const Events: React.FC = () => {
       )}
       <Header>
         <ul
-          className={`flex flex  ${
+          className={`flex  ${
             isMobile ? "flex-col bg-white w-full" : "flex-row"
           } justify-between gap-x-[24px] border-l-2 border-primary pl-[50px] h-full`}
         >
