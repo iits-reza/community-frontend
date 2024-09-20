@@ -16,10 +16,6 @@ import {
 import { Link as ScrollLink } from "react-scroll";
 import { useMediaQuery } from "react-responsive";
 
-type Props = {
-  setIsModalOpen: (arg: boolean) => void;
-};
-
 const languages = [
   {
     code: "en",
@@ -32,7 +28,7 @@ const languages = [
     dir: "rtl",
   },
 ];
-const HomeComponent = ({ setIsModalOpen }: Props) => {
+const HomeComponent = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -193,13 +189,13 @@ const HomeComponent = ({ setIsModalOpen }: Props) => {
           {t("home.description")}
         </p>
         <div className="flex gap-2 flex-col lg:flex-row">
-          <Button
+          {/* <Button
             variant="primary"
             className="font-primary"
             onClick={() => setIsModalOpen(true)}
           >
             {t("home.join_button")}
-          </Button>
+          </Button> */}
           {/* <Link to="/about"> */}
           <Button
             variant="secondary"

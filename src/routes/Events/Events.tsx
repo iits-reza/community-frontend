@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
 import { Header } from "../../components/header/header";
 import { Button } from "../../components/button";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCertificate,
-  faGrip,
-  faHome,
-  faImage,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCertificate } from "@fortawesome/free-solid-svg-icons";
 import { Link as ScrollLink } from "react-scroll";
 
 import { useTranslation } from "react-i18next";
-import { ProgramModal } from "../../components/programModal/programModal";
 import { gql, useQuery } from "@apollo/client";
 import { EventCard } from "../../components/eventCard/eventCard";
 import { useMediaQuery } from "react-responsive";
@@ -38,21 +31,27 @@ const GET_EVENTS = gql`
   }
 `;
 
+// Define types based on your GraphQL query
+interface Event {
+  id: string;
+  title: string;
+  eventDate: string;
+  content: { document: string };
+  image: { url: string; height: number; width: number };
+  author: { name: string };
+  eventTime: string;
+}
+
+interface EventsData {
+  events: Event[];
+}
+
 // This is a route for all events
 const Events: React.FC = () => {
   const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const navigate = useNavigate();
-  const [isGrid, setIsGrid] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const { loading, error, data } = useQuery(GET_EVENTS);
-
-  // Load the grid/list state from localStorage
-  useEffect(() => {
-    const savedViewMode = localStorage.getItem("viewMode");
-    if (savedViewMode) setIsGrid(savedViewMode === "grid");
-  }, []);
+  const { loading, error, data } = useQuery<EventsData>(GET_EVENTS);
 
   // const eventData = data.events;
   if (loading) return "Loading...";
@@ -69,30 +68,8 @@ const Events: React.FC = () => {
       </p>
     );
 
-  // grid code for different post size saved for later
-  // const handleGrid = (gridType: string) => {
-  //   const isGridView = gridType === "grid";
-  //   setIsGrid(isGridView);
-  //   localStorage.setItem("viewMode", isGridView ? "grid" : "list");
-  // };
-
-  const handleOpenModal = (event, eventId: string) => {
-    setSelectedEvent(event);
-    // setIsModalOpen(true);
-    navigate(`/events/${eventId}`);
-  };
-
   return (
     <div className="flex flex-col py-[190px] gap-[25px] justify-center">
-      {isModalOpen && selectedEvent && (
-        <ProgramModal
-          imageSrc={selectedEvent.image.url}
-          title={selectedEvent.title}
-          description={selectedEvent.content.document}
-          timeData={`${selectedEvent.eventDate} - ${selectedEvent.eventTime}`}
-          onCloseModal={() => setIsModalOpen(false)}
-        />
-      )}
       <Header>
         <ul
           className={`flex  ${
@@ -141,45 +118,13 @@ const Events: React.FC = () => {
             Here you can see all events and programs
           </p>
         </div>
-        {/* <div>
-          <Button
-            variant={`${isGrid && "selected"}`}
-            onClick={() => handleGrid("grid")}
-          >
-            <FontAwesomeIcon icon={faGrip} />
-          </Button>
-          <Button
-            onClick={() => handleGrid("noGrid")}
-            variant={`${!isGrid && "selected"}`}
-          >
-            <FontAwesomeIcon icon={faImage} />
-          </Button>
-        </div> */}
       </div>
-      {/* <div
-        className={`grid gap-[30px] items-center ${
-          isGrid ? "grid-cols-4  " : "grid-cols-2 "
-        }  px-[80px] `}
-      >
-        {data.events.map((event) => (
-          <EventCard
-            key={event.id}
-            author={event.author}
-            onClick={() => handleOpenModal(event)}
-            className={`${isGrid ? "w-[300px]  h-[400px] " : "w-[500px] "}`}
-            buttonText={t("programs.viewmore_button")}
-            eventDate={event.eventDate}
-            eventTime={event.eventTime}
-            imageSrc={event.image.url}
-            title={event.title}
-          />
-        ))}
-      </div> */}
+
       <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-4 justify-items-center content-center">
-        {data.events.map((event) => (
+        {data?.events.map((event: Event) => (
           <EventCard
             key={event.id}
-            author={event.author}
+            author={event.author.name}
             // onClick={() => handleOpenModal(event, eventId)}
             onClick={() => navigate(`/events/${event.id}`)}
             className="w-[330px] h-[370px]"

@@ -69,7 +69,7 @@ export const Home = () => {
           // onClose={}
         />
       )}
-      <HomeComponent setIsModalOpen={setIsModalOpen} />
+      <HomeComponent />
       <About />
       {/* <Donations /> */}
       {faqLoading && "Loading..."}
