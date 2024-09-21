@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { useTranslation } from "react-i18next";
+import { GraphQLError } from "graphql";
+
+interface FieldErrors {
+  name?: string;
+  last?: string;
+  email?: string;
+  phone?: string;
+  form?: string;
+}
+
 interface FormData {
   name: string;
   last: string;
@@ -35,7 +45,7 @@ const MembershipForm: React.FC = () => {
     phone: "",
   };
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [createMember, { data = formData, loading, error }] = useMutation(
+  const [createMember, { data = formData, loading }] = useMutation(
     CREATE_MEMEBER_MUTATION
   );
   const { t } = useTranslation();
@@ -66,9 +76,11 @@ const MembershipForm: React.FC = () => {
       setFormMessage(
         "Form submitted successfully, you may close dialogue now ✓"
       );
-    } catch (err: any) {
+    } catch (err) {
       // Process and display error messages
-      const fieldErrors: { [key: string]: string } = {};
+      // const fieldErrors: { [key: string]: string } = {};
+      const fieldErrors: FieldErrors = {};
+
       if (!/^[a-zA-Z]+$/.test(formData.name)) {
         fieldErrors.name = "First name must contain only letters.";
       }
@@ -86,8 +98,9 @@ const MembershipForm: React.FC = () => {
         setErrors(fieldErrors);
         return; // Stop form submission if there are front-end validation errors
       }
+
       if (err.graphQLErrors) {
-        err.graphQLErrors.forEach((error: any) => {
+        err.graphQLErrors.forEach((error: GraphQLError) => {
           const message = error.message;
           if (message.includes("EMAIL_EXISTS")) {
             fieldErrors.email =

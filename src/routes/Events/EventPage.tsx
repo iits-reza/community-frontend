@@ -4,6 +4,7 @@ import {
   DocumentRenderer,
   DocumentRendererProps,
 } from "@keystone-6/document-renderer";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -37,10 +38,27 @@ const GET_RECORD_BY_ID = gql`
     }
   }
 `;
+interface DocumentNode {
+  type: string;
+  children: Array<{ text: string }>;
+}
 
-interface EventVars {
-  where: {
-    id: string; // Assuming you are fetching by ID
+interface EventResponse {
+  event: {
+    id: string;
+    title: string;
+    eventDate: string;
+    eventTime: string;
+    createdAt: string;
+    content: {
+      document: DocumentNode; // Adjust this type based on the actual structure
+    };
+    author: {
+      name: string;
+    };
+    image: {
+      url: string;
+    };
   };
 }
 
@@ -51,7 +69,7 @@ const EventsPage: React.FC = () => {
   const { t } = useTranslation();
   const [isCopied, setIsCopied] = useState(false);
 
-  const { loading, error, data } = useQuery<EventVars>(GET_RECORD_BY_ID, {
+  const { loading, error, data } = useQuery<EventResponse>(GET_RECORD_BY_ID, {
     variables: { where: { id } }, // Pass the `id` as the `where` variable
   });
 
@@ -85,7 +103,7 @@ const EventsPage: React.FC = () => {
     await navigator.clipboard.writeText(location.href);
     setIsCopied(true);
   };
-  const { event } = data!;
+  const event = data?.event;
   return (
     <>
       <Header>
@@ -158,8 +176,8 @@ const EventsPage: React.FC = () => {
                 {event?.author?.name && event?.author?.name.substring(0, 1)}
               </span>
               <div className="flex flex-col">
-                <span> {event.author.name}</span>
-                {<span>{formatDate(event.createdAt)}</span>}
+                <span> {event?.author.name}</span>
+                {<span>{formatDate(event?.createdAt)}</span>}
               </div>
             </div>
             {isCopied ? (
@@ -174,16 +192,16 @@ const EventsPage: React.FC = () => {
             )}
           </div>
           <div className="flex flex-col w-[700px] gap-6 mt-5">
-            <img src={event.image.url} className="w-4/5" />
-            <p className="text-2xl font-semibold">{event.title} </p>
+            <img src={event?.image.url} className="w-4/5" />
+            <p className="text-2xl font-semibold">{event?.title} </p>
             <p className="text-lg font-bold">
-              When: {event.eventDate} - {event.eventTime}
+              When: {event?.eventDate} - {event?.eventTime}
             </p>
 
             <p className="text-lg">
               <DocumentRenderer
                 renderers={renderer}
-                document={event.content.document}
+                document={event?.content.document}
               />
             </p>
           </div>

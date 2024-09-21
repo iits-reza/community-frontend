@@ -3,7 +3,7 @@ import { Header } from "../../components/header/header";
 import { Button } from "../../components/button";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCertificate, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faCertificate } from "@fortawesome/free-solid-svg-icons";
 import { useQuery, gql } from "@apollo/client";
 import { Link as ScrollLink } from "react-scroll";
 

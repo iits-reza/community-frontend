@@ -6,7 +6,6 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import React, { useState } from "react";
 import MembershipForm from "../membershipForm/membershipForm";
 import { useTranslation } from "react-i18next";
 
@@ -16,34 +15,10 @@ type Props = {
   title: string;
   description: string;
 };
-interface FormData {
-  firstName: "";
-  lastName: "";
-  email: "";
-  phone: "";
-}
 
-export const MembershipModal = ({
-  description,
-  onCloseModal,
-  title,
-}: Props) => {
+export const MembershipModal = ({ onCloseModal }: Props) => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    // Add more fields as needed
-  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
   return (
     <>
       {/* <button onClick={() => setIsOpen(true)}>Open dialog</button> */}

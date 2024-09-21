@@ -1,11 +1,6 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import "./global/default.css";
