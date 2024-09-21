@@ -5,17 +5,33 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ProgramModal } from "../programModal/programModal";
 
+interface Event {
+  id: string;
+  eventDate: string;
+  image: {
+    url: string;
+  };
+  title: string;
+  author: {
+    name: string;
+  };
+  eventTime: string;
+  content: {
+    document: string;
+  };
+}
+
 interface Props {
-  eventsData: object[];
+  eventsData: Event[];
 }
 
 const Programs = ({ eventsData = [] }: Props) => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
-  const handleOpenModal = (event) => {
+  const handleOpenModal = (event: Event) => {
     setSelectedEvent(event);
     setIsModalOpen(true);
   };
@@ -26,7 +42,7 @@ const Programs = ({ eventsData = [] }: Props) => {
         <ProgramModal
           imageSrc={selectedEvent.image.url}
           title={selectedEvent.title}
-          description={selectedEvent.content.document}
+          description={selectedEvent.content?.document}
           timeData={`${selectedEvent.eventDate} - ${selectedEvent.eventTime}`}
           onCloseModal={() => setIsModalOpen(false)}
         />
