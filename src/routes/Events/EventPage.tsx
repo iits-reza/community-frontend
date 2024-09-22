@@ -17,7 +17,7 @@ import { useMediaQuery } from "react-responsive";
 import { Link as ScrollLink } from "react-scroll";
 import { useTranslation } from "react-i18next";
 
-// Define the GraphQL query
+// get record by id query
 const GET_RECORD_BY_ID = gql`
   query Event($where: EventWhereUniqueInput!) {
     event(where: $where) {
@@ -38,20 +38,23 @@ const GET_RECORD_BY_ID = gql`
     }
   }
 `;
-interface DocumentNode {
+type DocumentNode = {
   type: string;
-  children: Array<{ text: string }>;
-}
-
+  children: DocumentNode[];
+  text?: string;
+  bold?: boolean;
+  italic?: boolean;
+  [key: string]: string | boolean | DocumentNode[] | undefined;
+};
 type EventResponse = {
   event: {
     id: string;
     title: string;
     eventDate: number;
     eventTime: string;
-    createdAt?: timestamptz;
+    createdAt: string;
     content: {
-      document: DocumentNode; // Adjust this type based on the actual structure
+      document: DocumentNode[]; // Adjust this type based on the actual structure
     };
     author: {
       name: string;
@@ -60,16 +63,23 @@ type EventResponse = {
       url: string;
     };
   };
+};
+interface Props {
+  eventData: EventResponse[];
 }
 
-const EventsPage: React.FC = () => {
+function EventsPage({ eventData }: Props) {
   const { id } = useParams<{ id: string }>();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [isCopied, setIsCopied] = useState(false);
 
-  const { loading, error, data } = useQuery<EventResponse>(GET_RECORD_BY_ID, {
+  const {
+    loading,
+    error,
+    data = eventData,
+  } = useQuery<EventResponse>(GET_RECORD_BY_ID, {
     variables: { where: { id } }, // Pass the `id` as the `where` variable
   });
 
@@ -103,7 +113,9 @@ const EventsPage: React.FC = () => {
     await navigator.clipboard.writeText(location.href);
     setIsCopied(true);
   };
-  const event = data?.event;
+  // const event = data?.event;
+  const event = (data as EventResponse)?.event;
+
   return (
     <>
       <Header>
@@ -209,5 +221,5 @@ const EventsPage: React.FC = () => {
       </div>
     </>
   );
-};
+}
 export default EventsPage;
