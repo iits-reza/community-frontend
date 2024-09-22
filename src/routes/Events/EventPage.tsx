@@ -64,22 +64,15 @@ type EventResponse = {
     };
   };
 };
-interface Props {
-  eventData: EventResponse[];
-}
 
-function EventsPage({ eventData }: Props) {
+function EventsPage() {
   const { id } = useParams<{ id: string }>();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [isCopied, setIsCopied] = useState(false);
 
-  const {
-    loading,
-    error,
-    data = eventData,
-  } = useQuery<EventResponse>(GET_RECORD_BY_ID, {
+  const { loading, error, data } = useQuery<EventResponse>(GET_RECORD_BY_ID, {
     variables: { where: { id } }, // Pass the `id` as the `where` variable
   });
 

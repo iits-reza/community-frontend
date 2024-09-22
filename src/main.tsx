@@ -61,7 +61,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route index path="/" element={<Home />} />
             <Route path="/about-community" element={<AboutCommunity />} />
             <Route path="/events" element={<EventsPrograms />} />
-            <Route path="/events/:id" element={<EventsPage />} />
+            <Route path="/events/:id" element={<EventsPage  />} />
           </Routes>
           <Footer />
         </Router>
