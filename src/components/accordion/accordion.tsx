@@ -1,10 +1,10 @@
 import { faCertificate } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { ReactNode } from "react";
 
 type Props = {
   title: string;
-  description: string;
+  description: ReactNode;
 };
 
 function Accordion({ title, description }: Props) {

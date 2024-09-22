@@ -1,18 +1,30 @@
-import Accordion from "../accordion/accordion";
-import { useTranslation } from "react-i18next";
 import {
   DocumentRenderer,
   DocumentRendererProps,
 } from "@keystone-6/document-renderer";
 
+import { useTranslation } from "react-i18next";
+import Accordion from "../accordion/accordion";
+
+type DocumentNode = {
+  type: string;
+  children: DocumentNode[];
+  text?: string;
+  bold?: boolean;
+  italic?: boolean;
+  [key: string]: string | boolean | DocumentNode[] | undefined;
+};
+interface faqData {
+  title: string;
+  content: {
+    document: DocumentNode[];
+  };
+}
 interface Props {
-  // title: string;
-  // description: React.ComponentType;
-  faqData: object[];
+  faqData: faqData[];
 }
 
 const renderers: DocumentRendererProps["renderers"] = {
-  // use your editor's autocomplete to see what other renderers you can override
   inline: {
     bold: ({ children }) => {
       return <strong>{children}</strong>;
@@ -33,16 +45,14 @@ function Faq({ faqData = [] }: Props) {
       <h1 className="lg:text-[40px] text-[25px] pb-[20px] text-center font-title">
         {t("faq.title")}
       </h1>
-      {/* {accordionData.map((accordion) => ( */}
       {faqData.map((faq) => (
         <Accordion
           title={faq.title}
           description={
             <DocumentRenderer
-              document={faq.content.document || []}
+              document={faq.content.document}
               renderers={renderers}
             />
-            // faq.content.document
           }
         />
       ))}

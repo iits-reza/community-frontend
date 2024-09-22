@@ -43,13 +43,13 @@ interface DocumentNode {
   children: Array<{ text: string }>;
 }
 
-interface EventResponse {
+type EventResponse = {
   event: {
     id: string;
     title: string;
-    eventDate: string;
+    eventDate: number;
     eventTime: string;
-    createdAt: string;
+    createdAt?: timestamptz;
     content: {
       document: DocumentNode; // Adjust this type based on the actual structure
     };
