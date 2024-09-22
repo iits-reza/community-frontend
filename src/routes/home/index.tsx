@@ -4,8 +4,7 @@ import Programs from "../../components/programs/programs";
 // import Donations from "../../components/donations/donations";
 import Faq from "../../components/faq/faq";
 import HomeComponent from "../../components/home/home";
-import { useEffect, useState } from "react";
-import { MembershipModal } from "../../components/membershipModal/membershipModal";
+import { useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 
 const GET_FAQS = gql`
@@ -42,8 +41,6 @@ const GET_LASTEVENTS = gql`
 `;
 
 export const Home = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // const { error, loading, data } = useQuery(GET_FAQS);
   const {
     error: faqError,
     loading: faqLoading,
@@ -61,14 +58,6 @@ export const Home = () => {
 
   return (
     <div className="">
-      {isModalOpen && (
-        <MembershipModal
-          description="Here you can register your info to your community "
-          onCloseModal={setIsModalOpen}
-          title="Membership registration"
-          // onClose={}
-        />
-      )}
       <HomeComponent />
       <About />
       {/* <Donations /> */}
