@@ -104,9 +104,11 @@ const AboutCommunity: React.FC = () => {
         </ul>
       </Header>
       <div className="flex flex-col pt-[160px] p-[80px] px-[300px] gap-[50px]">
-        <h1 className="font-primary text-section-title">{data.about.title}</h1>
+        <h1 className="font-primary text-section-title">
+          {data && data?.about?.title}
+        </h1>
         <DocumentRenderer
-          document={data.about.content.document}
+          document={data && data.about.content.document}
           renderers={renderers}
         />
       </div>
