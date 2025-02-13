@@ -42,32 +42,32 @@ const GET_LASTEVENTS = gql`
     }
   }
 `;
-// const eventOfflineTemplate = [
-//   {
-//     id: 1,
-//     eventDate: "2025-02-15",
-//     imageSrc: EventTemplateSrc,
-//     title: "Community meeting",
-//     author: "John Doe",
-//     eventTime: "18:00",
-//   },
-//   {
-//     id: 2,
-//     eventDate: "2025-02-15",
-//     imageSrc: EventTemplateSrc,
-//     title: "Community meeting",
-//     author: "John Doe",
-//     eventTime: "18:00",
-//   },
-//   {
-//     id: 3,
-//     eventDate: "2025-02-15",
-//     imageSrc: EventTemplateSrc,
-//     title: "Community meeting",
-//     author: "John Doe",
-//     eventTime: "18:00",
-//   },
-// ];
+const eventOfflineTemplate = [
+  {
+    id: 1,
+    eventDate: "2025-02-15",
+    imageSrc: EventTemplateSrc,
+    title: "Community meeting",
+    author: "John Doe",
+    eventTime: "18:00",
+  },
+  {
+    id: 2,
+    eventDate: "2025-02-15",
+    imageSrc: EventTemplateSrc,
+    title: "Community meeting",
+    author: "John Doe",
+    eventTime: "18:00",
+  },
+  {
+    id: 3,
+    eventDate: "2025-02-15",
+    imageSrc: EventTemplateSrc,
+    title: "Community meeting",
+    author: "John Doe",
+    eventTime: "18:00",
+  },
+];
 export const Home = () => {
   const {
     error: faqError,
@@ -97,40 +97,21 @@ export const Home = () => {
           <p className="text-rose-800 font-medium text-lg p-5 text-center  bg-orange-200">
             Server is offline, please try again
           </p>
-          <div className="flex flex-row gap-3">
-            <EventCard
-              key={1}
-              onClick={() => {}}
-              className="w-[300px] h-[300px] lg:w-[360px] lg:h-[430px]"
-              buttonText="View more"
-              eventDate="10-10-2025"
-              imageSrc={EventTemplateSrc}
-              title="Community meeting"
-              author="John Doe"
-              eventTime="18:20"
-            />
-            <EventCard
-              key={1}
-              onClick={() => {}}
-              className="w-[300px] h-[300px] lg:w-[360px] lg:h-[430px]"
-              buttonText="View more"
-              eventDate="10-10-2025"
-              imageSrc={EventTemplateSrc}
-              title="Community meeting"
-              author="John Doe"
-              eventTime="18:20"
-            />
-            <EventCard
-              key={1}
-              onClick={() => {}}
-              className="w-[300px] h-[300px] lg:w-[360px] lg:h-[430px]"
-              buttonText="View more"
-              eventDate="10-10-2025"
-              imageSrc={EventTemplateSrc}
-              title="Community meeting"
-              author="John Doe"
-              eventTime="18:20"
-            />
+          <div className="grid lg:grid-cols-3 place-items-center  gap-[30px]">
+            {eventOfflineTemplate.map((template) => (
+              <EventCard
+                key={template.id}
+                onClick={() => {}}
+                className="w-[300px] h-[300px] lg:w-[360px] lg:h-[430px]"
+                buttonText="View more"
+                eventDate="10-10-2025"
+                imageSrc={EventTemplateSrc}
+                title={template.title}
+                author={template.author}
+                eventTime={template.eventTime}
+              />
+            ))}
+           
           </div>
         </div>
       )}
