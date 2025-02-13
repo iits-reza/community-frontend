@@ -105,7 +105,7 @@ export const Home = () => {
               buttonText="View more"
               eventDate="10-10-2025"
               imageSrc={EventTemplateSrc}
-              title="COmmunity meeting"
+              title="Community meeting"
               author="John Doe"
               eventTime="18:20"
             />
@@ -116,7 +116,7 @@ export const Home = () => {
               buttonText="View more"
               eventDate="10-10-2025"
               imageSrc={EventTemplateSrc}
-              title="COmmunity meeting"
+              title="Community meeting"
               author="John Doe"
               eventTime="18:20"
             />
@@ -127,7 +127,7 @@ export const Home = () => {
               buttonText="View more"
               eventDate="10-10-2025"
               imageSrc={EventTemplateSrc}
-              title="COmmunity meeting"
+              title="Community meeting"
               author="John Doe"
               eventTime="18:20"
             />
