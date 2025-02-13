@@ -15,7 +15,7 @@ function Footer() {
         The Community
       </h2>
       <div className="flex flex-col justify-between">
-        <span>©️ Charithy 2024, All right reserved </span>
+        <span>©️ Charithy 2025, All right reserved </span>
         <ul className="flex gap-1 justify-center lg:justify-end">
           <li className="hover:bg-primary hover:text-[#f0f4fe] p-4 cursor-pointer">
             <FontAwesomeIcon icon={faXTwitter} fontSize={25} />
